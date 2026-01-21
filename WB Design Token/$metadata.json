@@ -1,0 +1,12 @@
+{
+  "tokenSetOrder": [
+    "_Primitives/Core Value",
+    "1. Color modes/Light Mode",
+    "1. Color modes/Dark Mode",
+    "2. Typography/Breakpoint md",
+    "2. Typography/Breakpoint lg",
+    "3. Radius/Radius Default",
+    "4. Spacing/Spacing Default",
+    "5. Widths/Widths Default"
+  ]
+}
