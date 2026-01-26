@@ -1,0 +1,11 @@
+<button pButton [label]="label" [icon]="icon" [iconPos]="iconPos" [disabled]="disabled" [loading]="loading" [ngClass]="{
+    'wb-button': true,
+    'wb-button--primary': variant === 'primary',
+    'wb-button--secondary': variant === 'secondary',
+    'wb-button--tertiary': variant === 'tertiary',
+    'wb-button--danger': variant === 'danger',
+    'wb-button--sm': size === 'sm',
+    'wb-button--md': size === 'md',
+    'wb-button--lg': size === 'lg',
+    'wb-button--full-width': fullWidth
+  }"></button>

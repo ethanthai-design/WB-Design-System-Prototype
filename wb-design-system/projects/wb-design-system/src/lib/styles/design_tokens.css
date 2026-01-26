@@ -273,7 +273,8 @@
 }
 
 /* 2. Typography - MD (Default) */
-:root, [data-typography="md"] {
+:root,
+[data-typography="md"] {
   --font-family-font-family-display: Inter;
   --font-family-font-family-body: Inter;
   --font-weight-regular: Regular;
@@ -657,7 +658,8 @@
 }
 
 /* 4. Colors - Light Mode (Default) */
-[data-theme="light"], :root {
+[data-theme="light"],
+:root {
   --color-text-text-primary: var(--colors-gray-900);
   --color-text-text-primary-on-brand: var(--colors-base-white);
   --color-text-text-secondary: var(--colors-gray-700);

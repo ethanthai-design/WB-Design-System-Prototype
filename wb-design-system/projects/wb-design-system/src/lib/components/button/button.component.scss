@@ -1,0 +1,127 @@
+/**
+ * WB Button Component Styles
+ * 
+ * Custom styling for button component using design tokens.
+ * Overrides PrimeNG default styles to match the design system.
+ */
+
+.wb-button {
+    // Reset PrimeNG styles
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-family: var(--font-family-font-family-body);
+    font-weight: var(--font-weight-medium);
+    border-radius: var(--radius-md);
+
+    // Full width variant
+    &--full-width {
+        width: 100%;
+    }
+
+    // Size variants
+    &--sm {
+        padding: var(--spacing-2-8px) var(--spacing-3-12px);
+        font-size: var(--font-size-text-sm);
+        line-height: var(--line-height-text-sm);
+        height: 32px;
+    }
+
+    &--md {
+        padding: var(--spacing-2-5-10px) var(--spacing-4-16px);
+        font-size: var(--font-size-text-md-base);
+        line-height: var(--line-height-text-md);
+        height: 40px;
+    }
+
+    &--lg {
+        padding: var(--spacing-3-12px) var(--spacing-5-20px);
+        font-size: var(--font-size-text-lg);
+        line-height: var(--line-height-text-lg);
+        height: 48px;
+    }
+
+    // Primary variant
+    &--primary {
+        background-color: var(--color-background-bg-brand-solid);
+        color: var(--color-text-text-primary-on-brand);
+
+        &:hover:not(:disabled) {
+            background-color: var(--color-background-bg-brand-solid-hover);
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 4px var(--color-effects-focus-rings-focus-ring);
+        }
+
+        &:disabled {
+            background-color: var(--color-background-bg-disabled);
+            color: var(--color-text-text-disabled);
+            cursor: not-allowed;
+        }
+    }
+
+    // Secondary variant
+    &--secondary {
+        background-color: var(--color-background-bg-primary);
+        color: var(--color-text-text-secondary);
+        border: 1px solid var(--color-border-border-primary);
+
+        &:hover:not(:disabled) {
+            background-color: var(--color-background-bg-primary-hover);
+            color: var(--color-text-text-secondary-hover);
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 4px var(--color-effects-focus-rings-focus-ring);
+        }
+
+        &:disabled {
+            background-color: var(--color-background-bg-disabled);
+            color: var(--color-text-text-disabled);
+            border-color: var(--color-border-border-disabled);
+            cursor: not-allowed;
+        }
+    }
+
+    // Tertiary variant
+    &--tertiary {
+        background-color: transparent;
+        color: var(--color-text-text-brand-secondary);
+
+        &:hover:not(:disabled) {
+            background-color: var(--color-background-bg-secondary);
+            color: var(--color-text-text-brand-secondary-hover);
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 4px var(--color-effects-focus-rings-focus-ring);
+        }
+
+        &:disabled {
+            color: var(--color-text-text-disabled);
+            cursor: not-allowed;
+        }
+    }
+
+    // Danger variant
+    &--danger {
+        background-color: var(--color-background-bg-error-solid);
+        color: var(--color-text-text-primary-on-brand);
+
+        &:hover:not(:disabled) {
+            background-color: var(--colors-error-700);
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 4px var(--color-effects-focus-rings-focus-ring-error);
+        }
+
+        &:disabled {
+            background-color: var(--color-background-bg-disabled);
+            color: var(--color-text-text-disabled);
+            cursor: not-allowed;
+        }
+    }
+}
