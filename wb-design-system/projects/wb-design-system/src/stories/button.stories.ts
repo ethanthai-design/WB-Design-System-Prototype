@@ -23,7 +23,7 @@ type Story = StoryObj<ButtonComponent>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Primary: Story = {
   args: {
-    primary: true,
+    primary: false,
     label: 'Button',
   },
 };
@@ -46,4 +46,11 @@ export const Small: Story = {
     size: 'small',
     label: 'Button',
   },
+};
+
+export const Test: Story = {
+  args: {
+    primary: true,
+    label: "Button"
+  }
 };

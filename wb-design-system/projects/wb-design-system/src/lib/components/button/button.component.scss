@@ -1,69 +1,97 @@
 /**
- * WB Button Component Styles
+ * WB Button Component Styles [Refined & Fixed]
  * 
  * Custom styling for button component using design tokens.
- * Overrides PrimeNG default styles to match the design system.
+ * Precise alignment with Figma node 3287:427074.
  */
 
-.wb-button {
-    // Reset PrimeNG styles
-    border: none;
-    outline: none;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+// Use higher specificity to override PrimeNG defaults
+.wb-button.p-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
     font-family: var(--font-family-font-family-body);
     font-weight: var(--font-weight-medium);
-    border-radius: var(--radius-md);
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+    box-shadow: var(--shadows-shadow-xs);
+    border: 1px solid transparent; // Default border to avoid jumps
+
+    // Reset PrimeNG internal label padding/styles if any
+    .p-button-label {
+        flex: 0 0 auto;
+        font-weight: inherit;
+    }
 
     // Full width variant
-    &--full-width {
+    &.wb-button--full-width {
         width: 100%;
     }
 
-    // Size variants
-    &--sm {
-        padding: var(--spacing-2-8px) var(--spacing-3-12px);
-        font-size: var(--font-size-text-sm);
-        line-height: var(--line-height-text-sm);
-        height: 32px;
+    // Size variants - applying py and px precisely
+    &.wb-button--xs {
+        height: 24px;
+        padding: 6px 8px; // py: 6px, px: 8px (Hardcoded as safe fallback or use calc if tokens fail)
+        padding: var(--spacing-1-5-6px) var(--spacing-2-8px);
+        font-size: var(--font-size-text-xs);
+        line-height: var(--line-height-text-xs);
+        gap: 4px;
     }
 
-    &--md {
+    &.wb-button--sm {
+        height: 32px;
+        padding: 8px 14px; // py: 8px, px: 14px
+        padding: var(--spacing-2-8px) 14px;
+        font-size: var(--font-size-text-sm);
+        line-height: var(--line-height-text-sm);
+        gap: 8px;
+    }
+
+    &.wb-button--md {
+        height: 40px;
+        padding: 10px 16px; // py: 10px, px: 16px
         padding: var(--spacing-2-5-10px) var(--spacing-4-16px);
         font-size: var(--font-size-text-md-base);
         line-height: var(--line-height-text-md);
-        height: 40px;
+        gap: 8px;
     }
 
-    &--lg {
+    &.wb-button--lg {
+        height: 48px;
+        padding: 12px 20px; // py: 12px, px: 20px
         padding: var(--spacing-3-12px) var(--spacing-5-20px);
         font-size: var(--font-size-text-lg);
         line-height: var(--line-height-text-lg);
-        height: 48px;
+        gap: 12px;
     }
 
     // Primary variant
-    &--primary {
+    &.wb-button--primary {
         background-color: var(--color-background-bg-brand-solid);
         color: var(--color-text-text-primary-on-brand);
+        border-color: var(--color-background-bg-brand-solid);
 
         &:hover:not(:disabled) {
             background-color: var(--color-background-bg-brand-solid-hover);
-        }
-
-        &:focus {
-            box-shadow: 0 0 0 4px var(--color-effects-focus-rings-focus-ring);
-        }
-
-        &:disabled {
-            background-color: var(--color-background-bg-disabled);
-            color: var(--color-text-text-disabled);
-            cursor: not-allowed;
+            border-color: var(--color-background-bg-brand-solid-hover);
         }
     }
 
-    // Secondary variant
-    &--secondary {
+    // Secondary Color
+    &.wb-button--secondary-color {
+        background-color: var(--color-background-bg-primary);
+        color: var(--color-text-text-brand-secondary);
+        border: 1px solid var(--color-border-border-brand);
+
+        &:hover:not(:disabled) {
+            background-color: var(--color-background-bg-brand-primary);
+            color: var(--color-text-text-brand-secondary-hover);
+        }
+    }
+
+    // Secondary Gray
+    &.wb-button--secondary-gray {
         background-color: var(--color-background-bg-primary);
         color: var(--color-text-text-secondary);
         border: 1px solid var(--color-border-border-primary);
@@ -72,56 +100,56 @@
             background-color: var(--color-background-bg-primary-hover);
             color: var(--color-text-text-secondary-hover);
         }
+    }
 
-        &:focus {
-            box-shadow: 0 0 0 4px var(--color-effects-focus-rings-focus-ring);
-        }
+    // Tertiary Color
+    &.wb-button--tertiary-color {
+        background-color: transparent;
+        color: var(--color-text-text-brand-tertiary);
+        border: none;
 
-        &:disabled {
-            background-color: var(--color-background-bg-disabled);
-            color: var(--color-text-text-disabled);
-            border-color: var(--color-border-border-disabled);
-            cursor: not-allowed;
+        &:hover:not(:disabled) {
+            background-color: var(--color-background-bg-brand-primary);
+            color: var(--color-text-text-brand-tertiary-alt);
         }
     }
 
-    // Tertiary variant
-    &--tertiary {
+    // Tertiary Gray
+    &.wb-button--tertiary-gray {
         background-color: transparent;
-        color: var(--color-text-text-brand-secondary);
+        color: var(--color-text-text-tertiary);
+        border: none;
 
         &:hover:not(:disabled) {
             background-color: var(--color-background-bg-secondary);
-            color: var(--color-text-text-brand-secondary-hover);
-        }
-
-        &:focus {
-            box-shadow: 0 0 0 4px var(--color-effects-focus-rings-focus-ring);
-        }
-
-        &:disabled {
-            color: var(--color-text-text-disabled);
-            cursor: not-allowed;
+            color: var(--color-text-text-tertiary-hover);
         }
     }
 
     // Danger variant
-    &--danger {
+    &.wb-button--danger {
         background-color: var(--color-background-bg-error-solid);
         color: var(--color-text-text-primary-on-brand);
+        border-color: var(--color-background-bg-error-solid);
 
         &:hover:not(:disabled) {
             background-color: var(--colors-error-700);
+            border-color: var(--colors-error-700);
         }
+    }
 
-        &:focus {
-            box-shadow: 0 0 0 4px var(--color-effects-focus-rings-focus-ring-error);
-        }
+    // Global Disabled State
+    &:disabled {
+        background-color: var(--color-background-bg-disabled) !important;
+        color: var(--color-text-text-disabled) !important;
+        border-color: var(--color-border-border-disabled-subtle) !important;
+        cursor: not-allowed;
+        box-shadow: none;
+    }
 
-        &:disabled {
-            background-color: var(--color-background-bg-disabled);
-            color: var(--color-text-text-disabled);
-            cursor: not-allowed;
-        }
+    // Focus Ring
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 4px var(--color-effects-focus-rings-focus-ring) !important;
     }
 }

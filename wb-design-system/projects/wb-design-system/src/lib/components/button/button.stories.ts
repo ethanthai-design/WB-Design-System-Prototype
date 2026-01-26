@@ -8,11 +8,11 @@ const meta: Meta<ButtonComponent> = {
     argTypes: {
         variant: {
             control: 'select',
-            options: ['primary', 'secondary', 'tertiary', 'danger'],
+            options: ['primary', 'secondary-color', 'secondary-gray', 'tertiary-color', 'tertiary-gray', 'danger'],
         },
         size: {
             control: 'select',
-            options: ['sm', 'md', 'lg'],
+            options: ['xs', 'sm', 'md', 'lg'],
         },
         icon: {
             control: 'text',
@@ -31,18 +31,38 @@ export const Primary: Story = {
     },
 };
 
-export const Secondary: Story = {
+export const SecondaryColor: Story = {
+    name: 'Secondary Color',
     args: {
-        label: 'Secondary Button',
-        variant: 'secondary',
+        label: 'Secondary Color',
+        variant: 'secondary-color',
         size: 'md',
     },
 };
 
-export const Tertiary: Story = {
+export const SecondaryGray: Story = {
+    name: 'Secondary Gray',
     args: {
-        label: 'Tertiary Button',
-        variant: 'tertiary',
+        label: 'Secondary Gray',
+        variant: 'secondary-gray',
+        size: 'md',
+    },
+};
+
+export const TertiaryColor: Story = {
+    name: 'Tertiary Color',
+    args: {
+        label: 'Tertiary Color',
+        variant: 'tertiary-color',
+        size: 'md',
+    },
+};
+
+export const TertiaryGray: Story = {
+    name: 'Tertiary Gray',
+    args: {
+        label: 'Tertiary Gray',
+        variant: 'tertiary-gray',
         size: 'md',
     },
 };
@@ -55,31 +75,33 @@ export const Danger: Story = {
     },
 };
 
-export const Large: Story = {
-    args: {
-        label: 'Large Button',
-        size: 'lg',
-    },
-};
-
-export const Small: Story = {
-    args: {
-        label: 'Small Button',
-        size: 'sm',
-    },
+export const Sizes: Story = {
+    render: (args) => ({
+        props: args,
+        template: `
+      <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start;">
+        <wb-button label="Size LG" size="lg" variant="primary"></wb-button>
+        <wb-button label="Size MD" size="md" variant="primary"></wb-button>
+        <wb-button label="Size SM" size="sm" variant="primary"></wb-button>
+        <wb-button label="Size XS" size="xs" variant="primary"></wb-button>
+      </div>
+    `,
+    }),
 };
 
 export const WithIcon: Story = {
     args: {
         label: 'Button with Icon',
         icon: 'pi pi-check',
+        variant: 'secondary-gray'
     },
 };
 
 export const Loading: Story = {
     args: {
-        label: 'Loading...',
+        label: 'Submitting...',
         loading: true,
+        variant: 'primary'
     },
 };
 
@@ -87,5 +109,6 @@ export const Disabled: Story = {
     args: {
         label: 'Disabled Button',
         disabled: true,
+        variant: 'primary'
     },
 };

@@ -28,17 +28,13 @@ export class ButtonComponent {
 
   /**
    * Button variant style
-   * - primary: Main action button
-   * - secondary: Secondary action button
-   * - tertiary: Tertiary action button
-   * - danger: Destructive action button
    */
-  @Input() variant: 'primary' | 'secondary' | 'tertiary' | 'danger' = 'primary';
+  @Input() variant: 'primary' | 'secondary-color' | 'secondary-gray' | 'tertiary-color' | 'tertiary-gray' | 'danger' = 'primary';
 
   /**
    * Button size
    */
-  @Input() size: 'sm' | 'md' | 'lg' = 'md';
+  @Input() size: 'xs' | 'sm' | 'md' | 'lg' = 'md';
 
   /**
    * Disabled state
