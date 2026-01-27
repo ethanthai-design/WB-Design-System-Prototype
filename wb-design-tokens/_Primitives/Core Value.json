@@ -814,9 +814,17 @@
       "$type": "number",
       "$value": 4
     },
+    "1․5 (6px)": {
+      "$type": "number",
+      "$value": 6
+    },
     "2 (8px)": {
       "$type": "number",
       "$value": 8
+    },
+    "2․5 (10px)": {
+      "$type": "number",
+      "$value": 10
     },
     "3 (12px)": {
       "$type": "number",
@@ -878,21 +886,29 @@
       "$type": "number",
       "$value": 256
     },
-    "96 (384px)": {
-      "$type": "number",
-      "$value": 384
-    },
     "80 (320px)": {
       "$type": "number",
       "$value": 320
+    },
+    "96 (384px)": {
+      "$type": "number",
+      "$value": 384
     },
     "120 (480px)": {
       "$type": "number",
       "$value": 480
     },
+    "140 (560px)": {
+      "$type": "number",
+      "$value": 560
+    },
     "160 (640px)": {
       "$type": "number",
       "$value": 640
+    },
+    "180 (720px)": {
+      "$type": "number",
+      "$value": 720
     },
     "192 (768px)": {
       "$type": "number",
@@ -917,22 +933,6 @@
     "480 (1,920px)": {
       "$type": "number",
       "$value": 1920
-    },
-    "1․5 (6px)": {
-      "$type": "number",
-      "$value": 6
-    },
-    "140 (560px)": {
-      "$type": "number",
-      "$value": 560
-    },
-    "180 (720px)": {
-      "$type": "number",
-      "$value": 720
-    },
-    "2․5 (10px)": {
-      "$type": "number",
-      "$value": 10
     },
     "425 (1,700px)": {
       "$type": "number",
