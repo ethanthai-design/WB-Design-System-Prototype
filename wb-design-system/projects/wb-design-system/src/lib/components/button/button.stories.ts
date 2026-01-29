@@ -6,32 +6,70 @@ const meta: Meta<ButtonComponent> = {
     component: ButtonComponent,
     tags: ['autodocs'],
     argTypes: {
-        label: { control: 'text' },
+        label: {
+            control: 'text',
+            table: { category: 'General' }
+        },
         variant: {
             control: 'select',
             options: ['primary', 'secondary-gray', 'tertiary-gray', 'danger', 'link-color', 'link-gray'],
+            table: { category: 'General' }
         },
         size: {
             control: 'select',
             options: ['xs', 'sm', 'md', 'lg'],
+            table: { category: 'General' }
         },
-        disabled: { control: 'boolean' },
-        loading: { control: 'boolean' },
-        fullWidth: { control: 'boolean' },
-        iconOnly: { control: 'boolean' },
-        icon: { control: 'text' },
-        showLeadingIcon: { control: 'boolean' },
-        leadingIcon: { control: 'text' },
-        showTrailingIcon: { control: 'boolean' },
-        trailingIcon: { control: 'text' },
+        iconOnly: {
+            control: 'boolean',
+            table: { category: 'Icons' }
+        },
+        icon: {
+            control: 'text',
+            table: { category: 'Icons' }
+        },
+        showLeadingIcon: {
+            control: 'boolean',
+            table: { category: 'Icons' }
+        },
+        leadingIcon: {
+            control: 'text',
+            table: { category: 'Icons' }
+        },
+        showTrailingIcon: {
+            control: 'boolean',
+            table: { category: 'Icons' }
+        },
+        trailingIcon: {
+            control: 'text',
+            table: { category: 'Icons' }
+        },
+        disabled: {
+            control: 'boolean',
+            table: { category: 'States' }
+        },
+        loading: {
+            control: 'boolean',
+            table: { category: 'States' }
+        },
+        fullWidth: {
+            control: 'boolean',
+            table: { category: 'States' }
+        },
     },
     args: {
+        label: 'Button',
+        variant: 'primary',
+        size: 'md',
         showLeadingIcon: true,
         leadingIcon: 'pi pi-plus',
         showTrailingIcon: false,
         trailingIcon: 'pi pi-arrow-right',
         iconOnly: false,
-        icon: 'pi pi-search',
+        icon: 'pi pi-plus',
+        disabled: false,
+        loading: false,
+        fullWidth: false,
     },
 };
 
