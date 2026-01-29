@@ -28,7 +28,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n    args: {\n        label: 'Disabled Button',\n        disabled: true,\n    },\n}"
+                "defaultValue": "{\n    args: {\n        label: 'Disabled Button',\n        disabled: true,\n        variant: 'primary'\n    },\n}"
+            },
+            {
+                "name": "IconOnly",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    name: 'Icon Only',\n    args: {\n        icon: 'pi pi-search',\n        iconOnly: true,\n        variant: 'primary',\n        size: 'md'\n    },\n}"
             },
             {
                 "name": "Large",
@@ -41,14 +51,24 @@
                 "defaultValue": "{\n  args: {\n    size: 'large',\n    label: 'Button',\n  },\n}"
             },
             {
-                "name": "Large",
+                "name": "LinkColor",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n    args: {\n        label: 'Large Button',\n        size: 'lg',\n    },\n}"
+                "defaultValue": "{\n    name: 'Link Color',\n    args: {\n        label: 'Link Color',\n        variant: 'link-color',\n        size: 'md',\n    },\n}"
+            },
+            {
+                "name": "LinkGray",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    name: 'Link Gray',\n    args: {\n        label: 'Link Gray',\n        variant: 'link-gray',\n        size: 'md',\n    },\n}"
             },
             {
                 "name": "Loading",
@@ -58,7 +78,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n    args: {\n        label: 'Loading...',\n        loading: true,\n    },\n}"
+                "defaultValue": "{\n    args: {\n        label: 'Submitting...',\n        loading: true,\n        variant: 'primary'\n    },\n}"
             },
             {
                 "name": "LoggedIn",
@@ -138,7 +158,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Meta<ButtonComponent>",
-                "defaultValue": "{\n    title: 'Components/Button',\n    component: ButtonComponent,\n    tags: ['autodocs'],\n    argTypes: {\n        variant: {\n            control: 'select',\n            options: ['primary', 'secondary', 'tertiary', 'danger'],\n        },\n        size: {\n            control: 'select',\n            options: ['sm', 'md', 'lg'],\n        },\n        icon: {\n            control: 'text',\n        },\n    },\n}"
+                "defaultValue": "{\n    title: 'Components/Button',\n    component: ButtonComponent,\n    tags: ['autodocs'],\n    argTypes: {\n        label: { control: 'text' },\n        variant: {\n            control: 'select',\n            options: ['primary', 'secondary-gray', 'tertiary-gray', 'danger', 'link-color', 'link-gray'],\n        },\n        size: {\n            control: 'select',\n            options: ['xs', 'sm', 'md', 'lg'],\n        },\n        disabled: { control: 'boolean' },\n        loading: { control: 'boolean' },\n        fullWidth: { control: 'boolean' },\n        iconOnly: { control: 'boolean' },\n        icon: { control: 'text' },\n        showLeadingIcon: { control: 'boolean' },\n        leadingIcon: { control: 'text' },\n        showTrailingIcon: { control: 'boolean' },\n        trailingIcon: { control: 'text' },\n    },\n    args: {\n        showLeadingIcon: true,\n        leadingIcon: 'pi pi-plus',\n        showTrailingIcon: false,\n        trailingIcon: 'pi pi-arrow-right',\n        iconOnly: false,\n        icon: 'pi pi-search',\n    },\n}"
             },
             {
                 "name": "preview",
@@ -158,7 +178,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n  args: {\n    primary: true,\n    label: 'Button',\n  },\n}"
+                "defaultValue": "{\n  args: {\n    primary: false,\n    label: 'Button',\n  },\n}"
             },
             {
                 "name": "Primary",
@@ -181,14 +201,24 @@
                 "defaultValue": "{\n  args: {\n    label: 'Button',\n  },\n}"
             },
             {
-                "name": "Secondary",
+                "name": "SecondaryGray",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n    args: {\n        label: 'Secondary Button',\n        variant: 'secondary',\n        size: 'md',\n    },\n}"
+                "defaultValue": "{\n    name: 'Secondary Gray',\n    args: {\n        label: 'Secondary Gray',\n        variant: 'secondary-gray',\n        size: 'md',\n    },\n}"
+            },
+            {
+                "name": "Sizes",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n    render: (args) => ({\n        props: args,\n        template: `\n      <div style=\"display: flex; flex-direction: column; gap: 16px; align-items: flex-start;\">\n        <wb-button label=\"Size LG\" size=\"lg\" variant=\"primary\"></wb-button>\n        <wb-button label=\"Size MD\" size=\"md\" variant=\"primary\"></wb-button>\n        <wb-button label=\"Size SM\" size=\"sm\" variant=\"primary\"></wb-button>\n        <wb-button label=\"Size XS\" size=\"xs\" variant=\"primary\"></wb-button>\n      </div>\n    `,\n    }),\n}"
             },
             {
                 "name": "Small",
@@ -201,34 +231,34 @@
                 "defaultValue": "{\n  args: {\n    size: 'small',\n    label: 'Button',\n  },\n}"
             },
             {
-                "name": "Small",
+                "name": "TertiaryGray",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n    args: {\n        label: 'Small Button',\n        size: 'sm',\n    },\n}"
+                "defaultValue": "{\n    name: 'Tertiary Gray',\n    args: {\n        label: 'Tertiary Gray',\n        variant: 'tertiary-gray',\n        size: 'md',\n    },\n}"
             },
             {
-                "name": "Tertiary",
+                "name": "Test",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
+                "file": "projects/wb-design-system/src/stories/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n    args: {\n        label: 'Tertiary Button',\n        variant: 'tertiary',\n        size: 'md',\n    },\n}"
+                "defaultValue": "{\n  args: {\n    primary: true,\n    label: \"Button\"\n  }\n}"
             },
             {
-                "name": "WithIcon",
+                "name": "WithIcons",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "{\n    args: {\n        label: 'Button with Icon',\n        icon: 'pi pi-check',\n    },\n}"
+                "defaultValue": "{\n    name: 'With Icons',\n    args: {\n        label: 'Icons Toggled',\n        variant: 'secondary-gray',\n        size: 'md',\n        leadingIcon: 'pi pi-plus',\n        showLeadingIcon: true,\n    },\n}"
             }
         ],
         "functions": [],
@@ -299,17 +329,37 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n    args: {\n        label: 'Disabled Button',\n        disabled: true,\n    },\n}"
+                    "defaultValue": "{\n    args: {\n        label: 'Disabled Button',\n        disabled: true,\n        variant: 'primary'\n    },\n}"
                 },
                 {
-                    "name": "Large",
+                    "name": "IconOnly",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n    args: {\n        label: 'Large Button',\n        size: 'lg',\n    },\n}"
+                    "defaultValue": "{\n    name: 'Icon Only',\n    args: {\n        icon: 'pi pi-search',\n        iconOnly: true,\n        variant: 'primary',\n        size: 'md'\n    },\n}"
+                },
+                {
+                    "name": "LinkColor",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    name: 'Link Color',\n    args: {\n        label: 'Link Color',\n        variant: 'link-color',\n        size: 'md',\n    },\n}"
+                },
+                {
+                    "name": "LinkGray",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n    name: 'Link Gray',\n    args: {\n        label: 'Link Gray',\n        variant: 'link-gray',\n        size: 'md',\n    },\n}"
                 },
                 {
                     "name": "Loading",
@@ -319,7 +369,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n    args: {\n        label: 'Loading...',\n        loading: true,\n    },\n}"
+                    "defaultValue": "{\n    args: {\n        label: 'Submitting...',\n        loading: true,\n        variant: 'primary'\n    },\n}"
                 },
                 {
                     "name": "meta",
@@ -329,7 +379,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Meta<ButtonComponent>",
-                    "defaultValue": "{\n    title: 'Components/Button',\n    component: ButtonComponent,\n    tags: ['autodocs'],\n    argTypes: {\n        variant: {\n            control: 'select',\n            options: ['primary', 'secondary', 'tertiary', 'danger'],\n        },\n        size: {\n            control: 'select',\n            options: ['sm', 'md', 'lg'],\n        },\n        icon: {\n            control: 'text',\n        },\n    },\n}"
+                    "defaultValue": "{\n    title: 'Components/Button',\n    component: ButtonComponent,\n    tags: ['autodocs'],\n    argTypes: {\n        label: { control: 'text' },\n        variant: {\n            control: 'select',\n            options: ['primary', 'secondary-gray', 'tertiary-gray', 'danger', 'link-color', 'link-gray'],\n        },\n        size: {\n            control: 'select',\n            options: ['xs', 'sm', 'md', 'lg'],\n        },\n        disabled: { control: 'boolean' },\n        loading: { control: 'boolean' },\n        fullWidth: { control: 'boolean' },\n        iconOnly: { control: 'boolean' },\n        icon: { control: 'text' },\n        showLeadingIcon: { control: 'boolean' },\n        leadingIcon: { control: 'text' },\n        showTrailingIcon: { control: 'boolean' },\n        trailingIcon: { control: 'text' },\n    },\n    args: {\n        showLeadingIcon: true,\n        leadingIcon: 'pi pi-plus',\n        showTrailingIcon: false,\n        trailingIcon: 'pi pi-arrow-right',\n        iconOnly: false,\n        icon: 'pi pi-search',\n    },\n}"
                 },
                 {
                     "name": "Primary",
@@ -342,44 +392,44 @@
                     "defaultValue": "{\n    args: {\n        label: 'Primary Button',\n        variant: 'primary',\n        size: 'md',\n    },\n}"
                 },
                 {
-                    "name": "Secondary",
+                    "name": "SecondaryGray",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n    args: {\n        label: 'Secondary Button',\n        variant: 'secondary',\n        size: 'md',\n    },\n}"
+                    "defaultValue": "{\n    name: 'Secondary Gray',\n    args: {\n        label: 'Secondary Gray',\n        variant: 'secondary-gray',\n        size: 'md',\n    },\n}"
                 },
                 {
-                    "name": "Small",
+                    "name": "Sizes",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n    args: {\n        label: 'Small Button',\n        size: 'sm',\n    },\n}"
+                    "defaultValue": "{\n    render: (args) => ({\n        props: args,\n        template: `\n      <div style=\"display: flex; flex-direction: column; gap: 16px; align-items: flex-start;\">\n        <wb-button label=\"Size LG\" size=\"lg\" variant=\"primary\"></wb-button>\n        <wb-button label=\"Size MD\" size=\"md\" variant=\"primary\"></wb-button>\n        <wb-button label=\"Size SM\" size=\"sm\" variant=\"primary\"></wb-button>\n        <wb-button label=\"Size XS\" size=\"xs\" variant=\"primary\"></wb-button>\n      </div>\n    `,\n    }),\n}"
                 },
                 {
-                    "name": "Tertiary",
+                    "name": "TertiaryGray",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n    args: {\n        label: 'Tertiary Button',\n        variant: 'tertiary',\n        size: 'md',\n    },\n}"
+                    "defaultValue": "{\n    name: 'Tertiary Gray',\n    args: {\n        label: 'Tertiary Gray',\n        variant: 'tertiary-gray',\n        size: 'md',\n    },\n}"
                 },
                 {
-                    "name": "WithIcon",
+                    "name": "WithIcons",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n    args: {\n        label: 'Button with Icon',\n        icon: 'pi pi-check',\n    },\n}"
+                    "defaultValue": "{\n    name: 'With Icons',\n    args: {\n        label: 'Icons Toggled',\n        variant: 'secondary-gray',\n        size: 'md',\n        leadingIcon: 'pi pi-plus',\n        showLeadingIcon: true,\n    },\n}"
                 }
             ],
             "projects/wb-design-system/src/stories/button.stories.ts": [
@@ -411,7 +461,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "{\n  args: {\n    primary: true,\n    label: 'Button',\n  },\n}"
+                    "defaultValue": "{\n  args: {\n    primary: false,\n    label: 'Button',\n  },\n}"
                 },
                 {
                     "name": "Secondary",
@@ -432,6 +482,16 @@
                     "deprecationMessage": "",
                     "type": "Story",
                     "defaultValue": "{\n  args: {\n    size: 'small',\n    label: 'Button',\n  },\n}"
+                },
+                {
+                    "name": "Test",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/wb-design-system/src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    primary: true,\n    label: \"Button\"\n  }\n}"
                 }
             ],
             "projects/wb-design-system/src/stories/header.stories.ts": [
@@ -612,7 +672,27 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Large",
+                "name": "IconOnly",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LinkColor",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/wb-design-system/src/lib/components/button/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LinkGray",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -652,7 +732,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Secondary",
+                "name": "SecondaryGray",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -662,7 +742,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Small",
+                "name": "Sizes",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -672,7 +752,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Tertiary",
+                "name": "TertiaryGray",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -682,7 +762,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "WithIcon",
+                "name": "WithIcons",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -743,6 +823,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Small",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/wb-design-system/src/stories/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Test",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

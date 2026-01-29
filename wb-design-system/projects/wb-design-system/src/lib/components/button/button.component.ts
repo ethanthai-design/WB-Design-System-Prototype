@@ -29,7 +29,7 @@ export class ButtonComponent {
   /**
    * Button variant style
    */
-  @Input() variant: 'primary' | 'secondary-color' | 'secondary-gray' | 'tertiary-color' | 'tertiary-gray' | 'danger' = 'primary';
+  @Input() variant: 'primary' | 'secondary-gray' | 'tertiary-gray' | 'danger' | 'link-color' | 'link-gray' = 'primary';
 
   /**
    * Button size
@@ -47,14 +47,34 @@ export class ButtonComponent {
   @Input() loading: boolean = false;
 
   /**
-   * Icon name (PrimeIcons)
+   * Leading icon class (e.g., 'pi pi-plus')
    */
-  @Input() icon?: string;
+  @Input() leadingIcon?: string;
 
   /**
-   * Icon position
+   * Whether to show the leading icon
    */
-  @Input() iconPos: 'left' | 'right' = 'left';
+  @Input() showLeadingIcon: boolean = false;
+
+  /**
+   * Trailing icon class (e.g., 'pi pi-arrow-right')
+   */
+  @Input() trailingIcon?: string;
+
+  /**
+   * Whether to show the trailing icon
+   */
+  @Input() showTrailingIcon: boolean = false;
+
+  /**
+   * Icon Only mode (renders as a square, hides label)
+   */
+  @Input() iconOnly: boolean = false;
+
+  /**
+   * The icon class to use in Icon Only mode
+   */
+  @Input() icon?: string;
 
   /**
    * Full width button

@@ -1,75 +1,82 @@
-/**
- * WB Button Component Styles [Refined & Fixed]
- * 
- * Custom styling for button component using design tokens.
- * Precise alignment with Figma node 3287:427074.
- */
-
 // Use higher specificity to override PrimeNG defaults
 .wb-button.p-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm); // 6px
     font-family: var(--font-family-font-family-body);
     font-weight: var(--font-weight-medium);
     transition: all 0.2s ease-in-out;
     box-sizing: border-box;
-    box-shadow: var(--shadows-shadow-xs);
-    border: 1px solid transparent; // Default border to avoid jumps
+    box-shadow: var(--color-effects-shadows-shadow-xs);
+    border: 1px solid transparent;
 
-    // Reset PrimeNG internal label padding/styles if any
     .p-button-label {
         flex: 0 0 auto;
         font-weight: inherit;
     }
 
-    // Full width variant
     &.wb-button--full-width {
         width: 100%;
     }
 
-    // Size variants - applying py and px precisely
+    // Size variants
     &.wb-button--xs {
         height: 24px;
-        padding: 6px 8px; // py: 6px, px: 8px (Hardcoded as safe fallback or use calc if tokens fail)
-        padding: var(--spacing-1-5-6px) var(--spacing-2-8px);
-        font-size: var(--font-size-text-xs);
+        padding: var(--spacing-xs) var(--spacing-md); // 4px 8px
+        font-size: var(--font-size-text-xs); // 10px
         line-height: var(--line-height-text-xs);
         gap: 4px;
+
+        &.wb-button--icon-only {
+            width: 24px;
+            padding: 4px;
+        }
     }
 
     &.wb-button--sm {
         height: 32px;
-        padding: 8px 14px; // py: 8px, px: 14px
-        padding: var(--spacing-2-8px) 14px;
-        font-size: var(--font-size-text-sm);
+        padding: var(--spacing-sm) var(--spacing-lg); // 6px 12px
+        font-size: var(--font-size-text-sm); // 12px
         line-height: var(--line-height-text-sm);
-        gap: 8px;
+        gap: 6px;
+
+        &.wb-button--icon-only {
+            width: 32px;
+            padding: 8px;
+        }
     }
 
     &.wb-button--md {
         height: 40px;
-        padding: 10px 16px; // py: 10px, px: 16px
-        padding: var(--spacing-2-5-10px) var(--spacing-4-16px);
-        font-size: var(--font-size-text-md-base);
+        padding: var(--spacing-md-alt) var(--spacing-xl); // 10px 16px
+        font-size: var(--font-size-text-md-base); // 13px
         line-height: var(--line-height-text-md);
         gap: 8px;
+
+        &.wb-button--icon-only {
+            width: 40px;
+            padding: 10px;
+        }
     }
 
     &.wb-button--lg {
         height: 48px;
-        padding: 12px 20px; // py: 12px, px: 20px
-        padding: var(--spacing-3-12px) var(--spacing-5-20px);
-        font-size: var(--font-size-text-lg);
+        padding: var(--spacing-lg) var(--spacing-2xl); // 12px 20px
+        font-size: var(--font-size-text-lg); // 16px
         line-height: var(--line-height-text-lg);
         gap: 12px;
+
+        &.wb-button--icon-only {
+            width: 48px;
+            padding: 12px;
+        }
     }
 
-    // Primary variant
+    // Variants
     &.wb-button--primary {
         background-color: var(--color-background-bg-brand-solid);
-        color: var(--color-text-text-primary-on-brand);
+        color: var(--color-text-text-white);
         border-color: var(--color-background-bg-brand-solid);
 
         &:hover:not(:disabled) {
@@ -78,19 +85,6 @@
         }
     }
 
-    // Secondary Color
-    &.wb-button--secondary-color {
-        background-color: var(--color-background-bg-primary);
-        color: var(--color-text-text-brand-secondary);
-        border: 1px solid var(--color-border-border-brand);
-
-        &:hover:not(:disabled) {
-            background-color: var(--color-background-bg-brand-primary);
-            color: var(--color-text-text-brand-secondary-hover);
-        }
-    }
-
-    // Secondary Gray
     &.wb-button--secondary-gray {
         background-color: var(--color-background-bg-primary);
         color: var(--color-text-text-secondary);
@@ -102,34 +96,21 @@
         }
     }
 
-    // Tertiary Color
-    &.wb-button--tertiary-color {
-        background-color: transparent;
-        color: var(--color-text-text-brand-tertiary);
-        border: none;
-
-        &:hover:not(:disabled) {
-            background-color: var(--color-background-bg-brand-primary);
-            color: var(--color-text-text-brand-tertiary-alt);
-        }
-    }
-
-    // Tertiary Gray
     &.wb-button--tertiary-gray {
         background-color: transparent;
         color: var(--color-text-text-tertiary);
         border: none;
+        box-shadow: none;
 
         &:hover:not(:disabled) {
-            background-color: var(--color-background-bg-secondary);
+            background-color: var(--color-background-bg-secondary-hover);
             color: var(--color-text-text-tertiary-hover);
         }
     }
 
-    // Danger variant
     &.wb-button--danger {
         background-color: var(--color-background-bg-error-solid);
-        color: var(--color-text-text-primary-on-brand);
+        color: var(--color-text-text-white);
         border-color: var(--color-background-bg-error-solid);
 
         &:hover:not(:disabled) {
@@ -138,7 +119,58 @@
         }
     }
 
-    // Global Disabled State
+    &.wb-button--link-color {
+        background-color: transparent;
+        color: var(--color-text-text-brand-secondary);
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        height: auto;
+
+        &:hover:not(:disabled) {
+            color: var(--color-text-text-brand-secondary-hover);
+            text-decoration: underline;
+        }
+    }
+
+    &.wb-button--link-gray {
+        background-color: transparent;
+        color: var(--color-text-text-secondary);
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        height: auto;
+
+        &:hover:not(:disabled) {
+            color: var(--color-text-text-secondary-hover);
+            text-decoration: underline;
+        }
+    }
+
+    // Other previous variants kept for backward compatibility if needed, 
+    // but plan focused on the ones above.
+    &.wb-button--secondary-color {
+        background-color: var(--color-background-bg-primary);
+        color: var(--color-text-text-brand-secondary);
+        border: 1px solid var(--color-border-border-brand);
+
+        &:hover:not(:disabled) {
+            background-color: var(--color-background-bg-brand-primary);
+        }
+    }
+
+    &.wb-button--tertiary-color {
+        background-color: transparent;
+        color: var(--color-text-text-brand-tertiary);
+        border: none;
+        box-shadow: none;
+
+        &:hover:not(:disabled) {
+            background-color: var(--color-background-bg-brand-primary);
+        }
+    }
+
+    // Global States
     &:disabled {
         background-color: var(--color-background-bg-disabled) !important;
         color: var(--color-text-text-disabled) !important;
@@ -147,9 +179,18 @@
         box-shadow: none;
     }
 
-    // Focus Ring
+    // Focus Ring (Double effect)
     &:focus {
         outline: none;
-        box-shadow: 0 0 0 4px var(--color-effects-focus-rings-focus-ring) !important;
+        box-shadow: 0 0 0 2px var(--color-background-bg-primary), 0 0 0 4px var(--color-effects-focus-rings-focus-ring) !important;
+    }
+
+    // Icon Spacing
+    .wb-button-icon-leading {
+        margin-right: -2px; // Optical adjustment
+    }
+
+    .wb-button-icon-trailing {
+        margin-left: -2px; // Optical adjustment
     }
 }

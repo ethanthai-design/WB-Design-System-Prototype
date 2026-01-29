@@ -6,17 +6,32 @@ const meta: Meta<ButtonComponent> = {
     component: ButtonComponent,
     tags: ['autodocs'],
     argTypes: {
+        label: { control: 'text' },
         variant: {
             control: 'select',
-            options: ['primary', 'secondary-color', 'secondary-gray', 'tertiary-color', 'tertiary-gray', 'danger'],
+            options: ['primary', 'secondary-gray', 'tertiary-gray', 'danger', 'link-color', 'link-gray'],
         },
         size: {
             control: 'select',
             options: ['xs', 'sm', 'md', 'lg'],
         },
-        icon: {
-            control: 'text',
-        },
+        disabled: { control: 'boolean' },
+        loading: { control: 'boolean' },
+        fullWidth: { control: 'boolean' },
+        iconOnly: { control: 'boolean' },
+        icon: { control: 'text' },
+        showLeadingIcon: { control: 'boolean' },
+        leadingIcon: { control: 'text' },
+        showTrailingIcon: { control: 'boolean' },
+        trailingIcon: { control: 'text' },
+    },
+    args: {
+        showLeadingIcon: true,
+        leadingIcon: 'pi pi-plus',
+        showTrailingIcon: false,
+        trailingIcon: 'pi pi-arrow-right',
+        iconOnly: false,
+        icon: 'pi pi-search',
     },
 };
 
@@ -31,29 +46,11 @@ export const Primary: Story = {
     },
 };
 
-export const SecondaryColor: Story = {
-    name: 'Secondary Color',
-    args: {
-        label: 'Secondary Color',
-        variant: 'secondary-color',
-        size: 'md',
-    },
-};
-
 export const SecondaryGray: Story = {
     name: 'Secondary Gray',
     args: {
         label: 'Secondary Gray',
         variant: 'secondary-gray',
-        size: 'md',
-    },
-};
-
-export const TertiaryColor: Story = {
-    name: 'Tertiary Color',
-    args: {
-        label: 'Tertiary Color',
-        variant: 'tertiary-color',
         size: 'md',
     },
 };
@@ -67,11 +64,50 @@ export const TertiaryGray: Story = {
     },
 };
 
+export const LinkColor: Story = {
+    name: 'Link Color',
+    args: {
+        label: 'Link Color',
+        variant: 'link-color',
+        size: 'md',
+    },
+};
+
+export const LinkGray: Story = {
+    name: 'Link Gray',
+    args: {
+        label: 'Link Gray',
+        variant: 'link-gray',
+        size: 'md',
+    },
+};
+
 export const Danger: Story = {
     args: {
         label: 'Danger Button',
         variant: 'danger',
         size: 'md',
+    },
+};
+
+export const WithIcons: Story = {
+    name: 'With Icons',
+    args: {
+        label: 'Icons Toggled',
+        variant: 'secondary-gray',
+        size: 'md',
+        leadingIcon: 'pi pi-plus',
+        showLeadingIcon: true,
+    },
+};
+
+export const IconOnly: Story = {
+    name: 'Icon Only',
+    args: {
+        icon: 'pi pi-search',
+        iconOnly: true,
+        variant: 'primary',
+        size: 'md'
     },
 };
 
@@ -87,14 +123,6 @@ export const Sizes: Story = {
       </div>
     `,
     }),
-};
-
-export const WithIcon: Story = {
-    args: {
-        label: 'Button with Icon',
-        icon: 'pi pi-check',
-        variant: 'secondary-gray'
-    },
 };
 
 export const Loading: Story = {

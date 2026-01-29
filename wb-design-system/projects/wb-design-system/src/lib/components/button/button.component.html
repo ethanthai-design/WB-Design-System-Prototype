@@ -1,14 +1,21 @@
-<button pButton [label]="label" [icon]="icon" [iconPos]="iconPos" [disabled]="disabled" [loading]="loading" [ngClass]="{
-    'wb-button': true,
-    'wb-button--primary': variant === 'primary',
-    'wb-button--secondary-color': variant === 'secondary-color',
-    'wb-button--secondary-gray': variant === 'secondary-gray',
-    'wb-button--tertiary-color': variant === 'tertiary-color',
-    'wb-button--tertiary-gray': variant === 'tertiary-gray',
-    'wb-button--danger': variant === 'danger',
-    'wb-button--xs': size === 'xs',
-    'wb-button--sm': size === 'sm',
-    'wb-button--md': size === 'md',
-    'wb-button--lg': size === 'lg',
-    'wb-button--full-width': fullWidth
-  }"></button>
+<button pButton [type]="'button'" [disabled]="disabled" [loading]="loading" [ngClass]="[
+    'wb-button',
+    'wb-button--' + variant,
+    'wb-button--' + size,
+    fullWidth ? 'wb-button--full-width' : '',
+    iconOnly ? 'wb-button--icon-only' : ''
+  ]">
+  <!-- Leading Icon -->
+  <i *ngIf="!iconOnly && showLeadingIcon && leadingIcon && !loading" [class]="leadingIcon"
+    class="wb-button-icon-leading"></i>
+
+  <!-- Icon Only -->
+  <i *ngIf="iconOnly && icon && !loading" [class]="icon" class="wb-button-icon-only"></i>
+
+  <!-- Label -->
+  <span *ngIf="!iconOnly" class="p-button-label">{{ label }}</span>
+
+  <!-- Trailing Icon -->
+  <i *ngIf="!iconOnly && showTrailingIcon && trailingIcon && !loading" [class]="trailingIcon"
+    class="wb-button-icon-trailing"></i>
+</button>
