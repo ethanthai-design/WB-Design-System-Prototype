@@ -1,59 +1,56 @@
-# WbDesignSystem
+# WB Design System - Component Library
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+This is the primary component library for WorkBuddy, built with Angular 19 and Storybook.
 
-## Development server
+## 🚀 Getting Started
 
-To start a local development server, run:
-
+### Installation
+From the `wb-design-system` directory, run:
 ```bash
-ng serve
+npm install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+### Development Server
+To see components in isolation and interact with them:
 ```bash
-ng generate component component-name
+npm run storybook
+```
+This will start the Storybook server at `http://localhost:6006`.
+
+## 🏗 Project Structure
+
+- `projects/wb-design-system/`: The library source code.
+  - `src/lib/components/`: UI components (Button, Input, etc.).
+  - `src/lib/styles/`: Global styles and generated `design_tokens.css`.
+- `.storybook/`: Storybook configuration, including global styles and theme setup.
+
+## 🎨 Styling & Tokens
+
+We use **CSS Variables** for all styling. These variables are generated from the [`wb-design-tokens`](../wb-design-tokens) package.
+
+### Using Tokens in Components
+To use a token in a component's `.scss` or `.css` file:
+```scss
+.my-component {
+  background-color: var(--color-background-bg-primary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+}
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🛠 Adding a New Component
 
+1.  **Generate**: Use the Angular CLI to generate a component inside the library:
+    ```bash
+    ng generate component lib/components/my-component --project wb-design-system
+    ```
+2.  **Create Story**: Add a `my-component.stories.ts` file in the component directory to document it in Storybook.
+3.  **Export**: Ensure the component is exported from `public-api.ts`.
+
+## 📦 Building for Production
+
+To build the library for distribution:
 ```bash
-ng generate --help
+npm run build
 ```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The output will be in the `dist/wb-design-system` directory.
