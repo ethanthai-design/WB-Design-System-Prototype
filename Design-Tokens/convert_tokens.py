@@ -5,7 +5,7 @@ import sys
 
 TOKEN_DIR = os.path.dirname(os.path.abspath(__file__))
 SOURCE_DIR = os.path.join(TOKEN_DIR, 'originial-tokens')
-OUTPUT_FILE = os.path.join(TOKEN_DIR, '..', 'wb-design-system', 'design_tokens.css')
+OUTPUT_FILE = os.path.join(TOKEN_DIR, '..', 'Development-Source', 'design_tokens.css')
 
 def sanitize_name(key):
     # Replace dots and parens with -

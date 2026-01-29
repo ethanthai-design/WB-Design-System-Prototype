@@ -3,23 +3,23 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "wb-design-system": {
+    "library": {
       "projectType": "library",
-      "root": "projects/wb-design-system",
-      "sourceRoot": "projects/wb-design-system/src",
+      "root": "projects/Library-Core",
+      "sourceRoot": "projects/Library-Core/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/wb-design-system/ng-package.json"
+            "project": "projects/Library-Core/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/wb-design-system/tsconfig.lib.prod.json"
+              "tsConfig": "projects/Library-Core/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/wb-design-system/tsconfig.lib.json"
+              "tsConfig": "projects/Library-Core/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -27,7 +27,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/wb-design-system/tsconfig.spec.json",
+            "tsConfig": "projects/Library-Core/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -37,17 +37,17 @@
         "storybook": {
           "builder": "@storybook/angular:start-storybook",
           "options": {
-            "configDir": "projects/wb-design-system/.storybook",
-            "browserTarget": "wb-design-system:build",
+            "configDir": "projects/Library-Core/.storybook",
+            "browserTarget": "library:build",
             "compodoc": true,
             "compodocArgs": [
               "-e",
               "json",
               "-d",
-              "projects/wb-design-system"
+              "projects/Library-Core"
             ],
             "styles": [
-              "projects/wb-design-system/src/lib/styles/design_tokens.css",
+              "projects/Library-Core/src/lib/styles/design_tokens.css",
               "node_modules/primeicons/primeicons.css"
             ],
             "port": 6006
@@ -56,50 +56,50 @@
         "build-storybook": {
           "builder": "@storybook/angular:build-storybook",
           "options": {
-            "configDir": "projects/wb-design-system/.storybook",
-            "browserTarget": "wb-design-system:build",
+            "configDir": "projects/Library-Core/.storybook",
+            "browserTarget": "library:build",
             "compodoc": true,
             "compodocArgs": [
               "-e",
               "json",
               "-d",
-              "projects/wb-design-system"
+              "projects/Library-Core"
             ],
-            "outputDir": "dist/storybook/wb-design-system"
+            "outputDir": "_Build_Output/storybook/library"
           }
         }
       }
     },
-    "showcase": {
+    "preview": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/showcase",
-      "sourceRoot": "projects/showcase/src",
+      "root": "projects/Preview-App",
+      "sourceRoot": "projects/Preview-App/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/showcase",
-            "index": "projects/showcase/src/index.html",
-            "browser": "projects/showcase/src/main.ts",
+            "outputPath": "_Build_Output/preview",
+            "index": "projects/Preview-App/src/index.html",
+            "browser": "projects/Preview-App/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "projects/showcase/tsconfig.app.json",
+            "tsConfig": "projects/Preview-App/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/showcase/public"
+                "input": "projects/Preview-App/public"
               }
             ],
             "styles": [
-              "projects/showcase/src/styles.scss"
+              "projects/Preview-App/src/styles.scss"
             ],
             "scripts": []
           },
@@ -131,10 +131,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "showcase:build:production"
+              "buildTarget": "preview:build:production"
             },
             "development": {
-              "buildTarget": "showcase:build:development"
+              "buildTarget": "preview:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -149,16 +149,16 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "projects/showcase/tsconfig.spec.json",
+            "tsConfig": "projects/Preview-App/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/showcase/public"
+                "input": "projects/Preview-App/public"
               }
             ],
             "styles": [
-              "projects/showcase/src/styles.scss"
+              "projects/Preview-App/src/styles.scss"
             ],
             "scripts": []
           }
