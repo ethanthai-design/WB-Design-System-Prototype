@@ -1,25 +1,50 @@
-# WorkBuddy Design System Prototype
+# WB-Design System Prototype
 
-Welcome! This project has been restructured to be easier to navigate.
+Welcome to the **WB-Design System Prototype** repository. This project is a foundational design system built for WorkBuddy, focusing on scalability, multi-theme support, and seamless developer-designer handoff.
 
-## 📂 Project Structure
+## 📂 Repository Structure
 
-- **`Design-Tokens/`**: This is where the design "DNA" lives (colors, fonts, spacing).
-  - Use `python3 convert_tokens.py` here to update the styles used by the developers.
-- **`Development-Source/`**: This contains all the actual code for the design system.
-  - **`projects/Library-Core/`**: The core components of the design system (Buttons, Inputs, etc.).
-  - **`projects/Preview-App/`**: A "showcase" application where you can see the components in action.
-- **`_Build_Output/`**: This is where the "finished products" go after the code is built (automatically hidden).
+This repository is organized into two main parts:
 
-## ✨ Clean Workspace View
-I have set up a "Clean View" for this project to hide technical "noise" (like `node_modules`, `tsconfig.json`, etc.).
+1.  **[`Design-Tokens`](./Design-Tokens)**: The source of truth for design tokens. It contains JSON token definitions and a conversion pipeline to generate CSS variables.
+2.  **[`Development-Source`](./Development-Source)**: The main development workspace containing:
+    - **`Library-Core`**: The Angular-based component library.
+    - **`Preview-App`**: A showcase/preview application for testing components.
 
-- **To see everything**: In VS Code, go to **Settings** > Search for **"Exclude"** > and toggle off the rules.
-- **Why hide them?**: This keeps your sidebar focused on the design and source code while keeping the "engine" running in the background.
+## 🚀 Quick Start
 
-## 🚀 Common Commands
+To get started with the design system, follow these steps:
 
-If you are working inside the **`Development-Source`** folder:
-- **`npm run storybook`**: Start the visual component explorer.
-- **`npm run build`**: Build the library and the preview app.
-- **`npm start`**: Run the preview application.
+### 1. Generate Design Tokens
+If you've updated tokens in the `Design-Tokens` directory, you'll need to regenerate the CSS:
+```bash
+cd Design-Tokens
+python3 convert_tokens.py
+```
+
+### 2. Run the Library Preview
+To run the preview application:
+```bash
+cd Development-Source
+npm install
+npm start
+```
+
+### 3. Run Storybook
+To see and interact with components in Storybook:
+```bash
+cd Development-Source
+npm run storybook
+```
+
+## 🛠 Tech Stack
+
+- **Framework**: [Angular 19](https://angular.dev/)
+- **Documentation/Workbench**: [Storybook](https://storybook.js.org/)
+- **Styling**: Vanilla CSS with Design Tokens
+- **Design Tokens**: JSON-based tokens converted via Python
+
+## 📜 Documentation
+
+- [Design Tokens Guide](./Design-Tokens/README.md) - Learn how tokens are structured and updated.
+- [Development Workspace Guide](./Development-Source/README.md) - Learn how to build and use components.

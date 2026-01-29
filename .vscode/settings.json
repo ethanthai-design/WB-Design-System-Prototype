@@ -5,13 +5,13 @@
         "**/_Build_Output": true,
         "**/dist": true,
         "Development-Source/.editorconfig": true,
-        "Development-Source/.gitignore": true,
+        "Development-Source/.gitignore": false,
         "Development-Source/package-lock.json": true,
-        "Development-Source/package.json": true,
+        "Development-Source/package.json": false,
         "Development-Source/tsconfig.json": true,
         "Development-Source/angular.json": true,
-        "Development-Source/README.md": true,
-        "Development-Source/projects/Library-Core/README.md": true,
-        "Development-Source/projects/Preview-App/README.md": true
+        "Development-Source/README.md": false,
+        "Development-Source/projects/Library-Core/README.md": false,
+        "Development-Source/projects/Preview-App/README.md": false
     }
 }

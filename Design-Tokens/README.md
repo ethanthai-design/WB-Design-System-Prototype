@@ -11,16 +11,16 @@ This package contains the raw design tokens and the scripts to convert them into
 - `4. Spacing/`: Layout and component spacing tokens.
 - `5. Widths/`: Max-width and container width tokens.
 - `_Primitives/`: Core color palettes and foundational values.
-- `convert_tokens.py`: A Python script that parses the JSON files and generates a `design_tokens.css` file in the component library.
+- `convert_tokens.py`: A Python script that parses the JSON files and generates a `design_tokens.css` file in the `Development-Source` directory.
 
 ## 🔄 How to Update Tokens
 
 1.  **Modify JSON**: Edit or add tokens in the respective JSON files within the subdirectories.
-2.  **Run Conversion**: Run the Python script to update the CSS variables in the Angular project:
+2.  **Run Conversion**: Run the Python script to update the CSS variables in the project:
     ```bash
     python3 convert_tokens.py
     ```
-3.  **Verify**: Check `../wb-design-system/projects/wb-design-system/src/lib/styles/design_tokens.css` to see the changes.
+3.  **Verify**: Check `../Development-Source/design_tokens.css` to see the changes.
 
 ## 🎨 Theme Support
 
