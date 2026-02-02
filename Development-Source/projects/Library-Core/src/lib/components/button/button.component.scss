@@ -24,8 +24,8 @@
     &.wb-button--xs {
         height: 24px;
         padding: var(--spacing-xs) var(--spacing-md); // 4px 8px
-        font-size: var(--font-size-text-xs); // 10px
-        line-height: var(--line-height-text-xs);
+        font-size: var(--font-size-text-sm); // 12px
+        line-height: var(--line-height-text-sm);
         gap: 4px;
 
         &.wb-button--icon-only {
@@ -37,8 +37,8 @@
     &.wb-button--sm {
         height: 32px;
         padding: var(--spacing-sm) var(--spacing-lg); // 6px 12px
-        font-size: var(--font-size-text-sm); // 12px
-        line-height: var(--line-height-text-sm);
+        font-size: var(--font-size-text-md-base); // 13px
+        line-height: var(--line-height-text-md);
         gap: 6px;
 
         &.wb-button--icon-only {
@@ -129,7 +129,6 @@
 
         &:hover:not(:disabled) {
             color: var(--color-text-text-brand-secondary-hover);
-            text-decoration: underline;
         }
     }
 
@@ -143,9 +142,10 @@
 
         &:hover:not(:disabled) {
             color: var(--color-text-text-secondary-hover);
-            text-decoration: underline;
         }
     }
+
+
 
     // Other previous variants kept for backward compatibility if needed, 
     // but plan focused on the ones above.
