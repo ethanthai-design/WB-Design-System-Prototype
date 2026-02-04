@@ -25,23 +25,23 @@
   },
   "width-2xl": {
     "$type": "number",
-    "$value": "{Spacing.256 (1,024px)}"
+    "$value": "{Spacing.256 (1024px)}"
   },
   "width-3xl": {
     "$type": "number",
-    "$value": "{Spacing.320 (1,280px)}"
+    "$value": "{Spacing.320 (1280px)}"
   },
   "width-4xl": {
     "$type": "number",
-    "$value": "{Spacing.360 (1,440px)}"
+    "$value": "{Spacing.360 (1440px)}"
   },
   "width-5xl": {
     "$type": "number",
-    "$value": "{Spacing.425 (1,700px)}"
+    "$value": "{Spacing.425 (1700px)}"
   },
   "width-6xl": {
     "$type": "number",
-    "$value": "{Spacing.480 (1,920px)}"
+    "$value": "{Spacing.480 (1920px)}"
   },
   "width-7xl": {
     "$type": "number",

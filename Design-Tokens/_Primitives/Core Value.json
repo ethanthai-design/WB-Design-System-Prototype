@@ -735,23 +735,23 @@
       },
       "600": {
         "$type": "color",
-        "$value": "#61656c"
+        "$value": "#63676c"
       },
       "700": {
         "$type": "color",
-        "$value": "#373a41"
+        "$value": "#393c41"
       },
       "800": {
         "$type": "color",
-        "$value": "#22262f"
+        "$value": "#272a2f"
       },
       "900": {
         "$type": "color",
-        "$value": "#13161b"
+        "$value": "#15171b"
       },
       "950": {
         "$type": "color",
-        "$value": "#0c0e12"
+        "$value": "#0d0e12"
       }
     },
     "Gray": {
@@ -914,29 +914,29 @@
       "$type": "number",
       "$value": 768
     },
-    "256 (1,024px)": {
+    "256 (1024px)": {
       "$type": "number",
       "$value": 1024
     },
-    "320 (1,280px)": {
+    "320 (1280px)": {
       "$type": "number",
       "$value": 1280
     },
-    "360 (1,440px)": {
+    "360 (1440px)": {
       "$type": "number",
       "$value": 1440
     },
-    "400 (1,600px)": {
+    "400 (1600px)": {
       "$type": "number",
       "$value": 1600
     },
-    "480 (1,920px)": {
-      "$type": "number",
-      "$value": 1920
-    },
-    "425 (1,700px)": {
+    "425 (1700px)": {
       "$type": "number",
       "$value": 1700
+    },
+    "480 (1920px)": {
+      "$type": "number",
+      "$value": 1920
     },
     "560 (2560px)": {
       "$type": "number",

@@ -401,6 +401,10 @@
         "shadow-3xl_02": {
           "$type": "color",
           "$value": "#ffffff00"
+        },
+        "ring-gray": {
+          "$type": "color",
+          "$value": "#ffffff0f"
         }
       },
       "Focus rings": {

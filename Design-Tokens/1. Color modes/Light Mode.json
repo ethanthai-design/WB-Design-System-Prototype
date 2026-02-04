@@ -344,7 +344,7 @@
       "Shadows": {
         "shadow-xs": {
           "$type": "color",
-          "$value": "#0a0d120d"
+          "$value": "#0a0d1214"
         },
         "shadow-sm_01": {
           "$type": "color",
@@ -401,6 +401,10 @@
         "shadow-3xl_02": {
           "$type": "color",
           "$value": "#0a0d120a"
+        },
+        "ring-gray": {
+          "$type": "color",
+          "$value": "#0a0d120f"
         }
       },
       "Focus rings": {
