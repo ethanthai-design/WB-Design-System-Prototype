@@ -177,11 +177,11 @@
   --colors-gray-dark-mode-300: #cecfd2;
   --colors-gray-dark-mode-400: #94979c;
   --colors-gray-dark-mode-500: #85888e;
-  --colors-gray-dark-mode-600: #61656c;
-  --colors-gray-dark-mode-700: #373a41;
-  --colors-gray-dark-mode-800: #22262f;
-  --colors-gray-dark-mode-900: #13161b;
-  --colors-gray-dark-mode-950: #0c0e12;
+  --colors-gray-dark-mode-600: #63676c;
+  --colors-gray-dark-mode-700: #393c41;
+  --colors-gray-dark-mode-800: #272a2f;
+  --colors-gray-dark-mode-900: #15171b;
+  --colors-gray-dark-mode-950: #0d0e12;
   --colors-gray-50: #fafafa;
   --colors-gray-100: #f5f5f5;
   --colors-gray-200: #e9eaeb;
@@ -221,12 +221,12 @@
   --spacing-160-640px: 640px;
   --spacing-180-720px: 720px;
   --spacing-192-768px: 768px;
-  --spacing-256-1-024px: 1024px;
-  --spacing-320-1-280px: 1280px;
-  --spacing-360-1-440px: 1440px;
-  --spacing-400-1-600px: 1600px;
-  --spacing-480-1-920px: 1920px;
-  --spacing-425-1-700px: 1700px;
+  --spacing-256-1024px: 1024px;
+  --spacing-320-1280px: 1280px;
+  --spacing-360-1440px: 1440px;
+  --spacing-400-1600px: 1600px;
+  --spacing-425-1700px: 1700px;
+  --spacing-480-1920px: 1920px;
   --spacing-560-2560px: 2560px;
   --spacing-none: var(--spacing-0-0px);
   --spacing-xxs: var(--spacing-0-5-2px);
@@ -263,11 +263,11 @@
   --width-md: var(--spacing-140-560px);
   --width-lg: var(--spacing-160-640px);
   --width-xl: var(--spacing-192-768px);
-  --width-2xl: var(--spacing-256-1-024px);
-  --width-3xl: var(--spacing-320-1-280px);
-  --width-4xl: var(--spacing-360-1-440px);
-  --width-5xl: var(--spacing-425-1-700px);
-  --width-6xl: var(--spacing-480-1-920px);
+  --width-2xl: var(--spacing-256-1024px);
+  --width-3xl: var(--spacing-320-1280px);
+  --width-4xl: var(--spacing-360-1440px);
+  --width-5xl: var(--spacing-425-1700px);
+  --width-6xl: var(--spacing-480-1920px);
   --width-7xl: var(--spacing-560-2560px);
   --paragraph-max-width: var(--spacing-180-720px);
 }
@@ -453,7 +453,7 @@
   --color-background-success-primary: var(--colors-success-50);
   --color-background-success-secondary: var(--colors-success-100);
   --color-background-success-solid: var(--colors-success-600);
-  --color-effects-shadow-xs: #0a0d120d;
+  --color-effects-shadow-xs: #0a0d1214;
   --color-effects-shadow-sm-01: #0a0d121a;
   --color-effects-shadow-sm-02: #0a0d121a;
   --color-effects-shadow-md-01: #0a0d121a;
@@ -468,6 +468,7 @@
   --color-effects-shadow-2xl-02: #0a0d120a;
   --color-effects-shadow-3xl-01: #0a0d1224;
   --color-effects-shadow-3xl-02: #0a0d120a;
+  --color-effects-shadows-ring-gray: #0a0d120f;
   --color-effects-focus-rings-focus-ring: var(--colors-brand-500);
   --color-effects-focus-rings-focus-ring-error: var(--colors-error-500);
   --component-colors-components-logo-wb-blue: var(--colors-base-logo-blue);
@@ -705,6 +706,7 @@
   --color-effects-shadow-xl-03: #ffffff00;
   --color-effects-shadow-2xl-02: #ffffff00;
   --color-effects-shadow-3xl-02: #ffffff00;
+  --color-effects-shadows-ring-gray: #ffffff0f;
   --color-effects-focus-rings-focus-ring: var(--colors-brand-500);
   --color-effects-focus-rings-focus-ring-error: var(--colors-error-500);
   --component-colors-components-logo-wb-blue: var(--colors-base-logo-blue);
