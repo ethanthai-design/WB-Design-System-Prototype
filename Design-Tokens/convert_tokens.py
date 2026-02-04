@@ -4,8 +4,9 @@ import re
 import sys
 
 TOKEN_DIR = os.path.dirname(os.path.abspath(__file__))
-SOURCE_DIR = os.path.join(TOKEN_DIR, 'originial-tokens')
-OUTPUT_FILE = os.path.join(TOKEN_DIR, '..', 'Development-Source', 'design_tokens.css')
+# The folders are directly inside the TOKEN_DIR
+SOURCE_DIR = TOKEN_DIR
+OUTPUT_FILE = os.path.join(TOKEN_DIR, '..', 'Development-Source', 'projects', 'Library-Core', 'src', 'lib', 'styles', 'design_tokens.css')
 
 def sanitize_name(key):
     # Replace dots and parens with -
@@ -27,7 +28,36 @@ def resolve_value(value):
     # Regex to find {Reference}
     def replacer(match):
         ref_name = match.group(1)
-        var_name = sanitize_name(ref_name)
+        # Apply the same de-duplication logic during resolution
+        parts = []
+        for p in ref_name.split('.'):
+            sanitized = sanitize_name(p)
+            if not parts:
+                parts.append(sanitized)
+            else:
+                last = parts[-1]
+                # Check for redundancy or synonyms
+                if sanitized == last:
+                    continue
+                if (last == 'background' and sanitized == 'bg') or (last == 'bg' and sanitized == 'background'):
+                    continue
+                if (last == 'foreground' and sanitized == 'fg') or (last == 'fg' and sanitized == 'foreground'):
+                    continue
+                if (last == 'color' and sanitized == 'colors') or (last == 'colors' and sanitized == 'color'):
+                    continue
+                # Handle cases where sanitized starts with last- (e.g., text and text-primary)
+                if sanitized.startswith(last + '-'):
+                    parts[-1] = sanitized # Replace with more specific version
+                else:
+                    parts.append(sanitized)
+        
+        var_name = '-'.join(parts)
+        # Final pass for common redundancies
+        var_name = var_name.replace('text-text-', 'text-')
+        var_name = var_name.replace('border-border-', 'border-')
+        var_name = var_name.replace('background-bg-', 'background-')
+        var_name = var_name.replace('foreground-fg-', 'foreground-')
+        
         return f"var(--{var_name})"
     
     return re.sub(r'\{([^}]+)\}', replacer, value)
@@ -40,17 +70,44 @@ def flatten_tokens(obj, prefix='', tokens=None):
         if key.startswith('$'):
             continue
             
-        new_prefix = f"{prefix}-{sanitize_name(key)}" if prefix else sanitize_name(key)
+        sanitized_key = sanitize_name(key)
         
+        if not prefix:
+            new_prefix = sanitized_key
+        else:
+            prefix_parts = prefix.split('-')
+            last_part = prefix_parts[-1]
+            
+            # Check for redundancy or synonyms
+            is_redundant = False
+            if sanitized_key == last_part:
+                is_redundant = True
+            elif (last_part == 'background' and sanitized_key == 'bg') or (last_part == 'bg' and sanitized_key == 'background'):
+                is_redundant = True
+            elif (last_part == 'foreground' and sanitized_key == 'fg') or (last_part == 'fg' and sanitized_key == 'foreground'):
+                is_redundant = True
+            elif (last_part == 'color' and sanitized_key == 'colors') or (last_part == 'colors' and sanitized_key == 'color'):
+                is_redundant = True
+            
+            if is_redundant:
+                new_prefix = prefix # Don't add anything
+            elif sanitized_key.startswith(last_part + '-'):
+                # Key already contains the prefix part (e.g., prefix='text', key='text-primary')
+                new_prefix = prefix[:-len(last_part)] + sanitized_key
+            else:
+                new_prefix = f"{prefix}-{sanitized_key}"
+            
+        # Global cleanup for common start repetitions (e.g., color-colors)
+        new_prefix = re.sub(r'^(color|colors)-(color|colors)-', r'\1-', new_prefix)
+        # Fix specific cases mentioned by user
+        new_prefix = new_prefix.replace('text-text-', 'text-')
+        new_prefix = new_prefix.replace('border-border-', 'border-')
+        new_prefix = new_prefix.replace('background-bg-', 'background-')
+        new_prefix = new_prefix.replace('foreground-fg-', 'foreground-')
+
         if isinstance(value, dict) and '$value' in value:
-            if value.get('$type') == 'typography':
-                # Handle composite typography token
-                typography_obj = value['$value']
-                for prop, prop_val in typography_obj.items():
-                    # camelCase to kebab-case
-                    prop_name = sanitize_name(re.sub(r'(?<!^)(?=[A-Z])', '-', prop))
-                    resolved_val = resolve_value(prop_val)
-                    tokens[f"{new_prefix}-{prop_name}"] = resolved_val
+            if value.get('$type') in ['typography']:
+                continue
             else:
                 tokens[new_prefix] = resolve_value(value['$value'])
         elif isinstance(value, dict):
@@ -97,7 +154,7 @@ tokens = process_file(dark_mode_file)
 for key, val in tokens.items():
     css_groups['[data-theme="dark"]'].append(f"  --{key}: {val};")
 
-# 4. Spacing (Global for now, unless spacing mode requested)
+# 4. Spacing (Global)
 spacing_file = os.path.join(SOURCE_DIR, '4. Spacing', 'Spacing Default.json')
 tokens = process_file(spacing_file)
 for key, val in tokens.items():
@@ -107,8 +164,8 @@ for key, val in tokens.items():
     css_groups[':root'].append(f"  --{key}: {clean_val};")
 
 # 5. Radius & Widths (Global)
-for folder, subdir_path in [('3. Radius', '3. Radius'), ('5. Widths', '5. Widths')]:
-    full_path = os.path.join(SOURCE_DIR, subdir_path)
+for folder in ['3. Radius', '5. Widths']:
+    full_path = os.path.join(SOURCE_DIR, folder)
     if os.path.exists(full_path):
         for file in os.listdir(full_path):
             if file.endswith('.json'):
@@ -126,6 +183,7 @@ tokens = process_file(typo_md_file)
 for key, val in tokens.items():
     clean_val = val
     if isinstance(val, (int, float)):
+        # Apply px to dimensions but not weights
         if any(x in key for x in ['size', 'height', 'spacing', 'indent']) and 'weight' not in key:
             clean_val = f"{val}px"
     css_groups[':root, [data-typography="md"]'].append(f"  --{key}: {clean_val};")
@@ -140,35 +198,31 @@ for key, val in tokens.items():
             clean_val = f"{val}px"
     css_groups['[data-typography="lg"]'].append(f"  --{key}: {clean_val};")
 
-# Encode CSS
+# Output CSS
+os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 with open(OUTPUT_FILE, 'w') as f:
     f.write("/* Generated CSS Variables - Multi-Theme Support */\n\n")
     
-    # Order: Primitives First
     f.write("/* 1. Global Primitives */\n")
     f.write(":root {\n")
     f.write("\n".join(css_groups[':root']))
     f.write("\n}\n\n")
     
-    # Typography Defaults
     f.write("/* 2. Typography - MD (Default) */\n")
     f.write(":root, [data-typography=\"md\"] {\n")
     f.write("\n".join(css_groups[':root, [data-typography="md"]']))
     f.write("\n}\n\n")
     
-    # Typography LG
     f.write("/* 3. Typography - LG */\n")
     f.write("[data-typography=\"lg\"] {\n")
     f.write("\n".join(css_groups['[data-typography="lg"]']))
     f.write("\n}\n\n")
 
-    # Colors Light
     f.write("/* 4. Colors - Light Mode (Default) */\n")
     f.write("[data-theme=\"light\"], :root {\n")
     f.write("\n".join(css_groups['[data-theme="light"], :root']))
     f.write("\n}\n\n")
     
-    # Colors Dark
     f.write("/* 5. Colors - Dark Mode */\n")
     f.write("[data-theme=\"dark\"] {\n")
     f.write("\n".join(css_groups['[data-theme="dark"]']))
