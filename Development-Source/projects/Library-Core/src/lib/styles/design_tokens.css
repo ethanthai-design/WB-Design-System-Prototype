@@ -319,7 +319,9 @@
   --textcase-none: none;
   --textdecoration-none: none;
   --paragraphindent-0: 0px;
-  --body-xs-font-family: var(--font-family-font-family-body);
+
+  /* Body-xs*/
+  --body-xs: var(--font-family-font-family-body) var(--font-weight-regular) var(--line-height-text-xs) var(--font-size-text-xs) var(--letterspacing-0) var(--paragraphspacing-1) var(--paragraphindent-0) var(--textcase-none) var(--textdecoration-none);
   --body-xs-font-weight: var(--font-weight-regular);
   --body-xs-line-height: var(--line-height-text-xs);
   --body-xs-font-size: var(--font-size-text-xs);
@@ -328,6 +330,7 @@
   --body-xs-paragraph-indent: var(--paragraphindent-0);
   --body-xs-text-case: var(--textcase-none);
   --body-xs-text-decoration: var(--textdecoration-none);
+  /* Body-sm*/
   --body-sm-font-family: var(--font-family-font-family-body);
   --body-sm-font-weight: var(--font-weight-regular);
   --body-sm-line-height: var(--line-height-text-sm);
@@ -337,6 +340,7 @@
   --body-sm-paragraph-indent: var(--paragraphindent-0);
   --body-sm-text-case: var(--textcase-none);
   --body-sm-text-decoration: var(--textdecoration-none);
+  /* Body-md*/
   --body-md-font-family: var(--font-family-font-family-body);
   --body-md-font-weight: var(--font-weight-regular);
   --body-md-line-height: var(--line-height-text-md);
@@ -346,6 +350,7 @@
   --body-md-paragraph-indent: var(--paragraphindent-0);
   --body-md-text-case: var(--textcase-none);
   --body-md-text-decoration: var(--textdecoration-none);
+  /* Body-lg*/
   --body-lg-font-family: var(--font-family-font-family-body);
   --body-lg-font-weight: var(--font-weight-regular);
   --body-lg-line-height: var(--line-height-text-lg);
@@ -355,6 +360,7 @@
   --body-lg-paragraph-indent: var(--paragraphindent-0);
   --body-lg-text-case: var(--textcase-none);
   --body-lg-text-decoration: var(--textdecoration-none);
+  /* Body-xl*/
   --body-xl-font-family: var(--font-family-font-family-body);
   --body-xl-font-weight: var(--font-weight-regular);
   --body-xl-line-height: var(--line-height-text-xl);
@@ -364,6 +370,7 @@
   --body-xl-paragraph-indent: var(--paragraphindent-0);
   --body-xl-text-case: var(--textcase-none);
   --body-xl-text-decoration: var(--textdecoration-none);
+  /* Label-xs*/
   --label-xs-font-family: var(--font-family-font-family-body);
   --label-xs-font-weight: var(--font-weight-medium);
   --label-xs-line-height: var(--line-height-text-xs);
@@ -373,6 +380,7 @@
   --label-xs-text-case: var(--textcase-none);
   --label-xs-text-decoration: var(--textdecoration-none);
   --label-xs-font-size: var(--font-size-text-xs);
+  /* Label-sm*/
   --label-sm-font-family: var(--font-family-font-family-body);
   --label-sm-font-weight: var(--font-weight-medium);
   --label-sm-line-height: var(--line-height-text-sm);
@@ -382,6 +390,7 @@
   --label-sm-text-case: var(--textcase-none);
   --label-sm-text-decoration: var(--textdecoration-none);
   --label-sm-font-size: var(--font-size-text-sm);
+  /* Label-md*/
   --label-md-font-family: var(--font-family-font-family-body);
   --label-md-font-weight: var(--font-weight-medium);
   --label-md-line-height: var(--line-height-text-md);
@@ -391,6 +400,7 @@
   --label-md-paragraph-indent: var(--paragraphindent-0);
   --label-md-text-case: var(--textcase-none);
   --label-md-text-decoration: var(--textdecoration-none);
+  /* Label-lg*/
   --label-lg-font-family: var(--font-family-font-family-body);
   --label-lg-font-weight: var(--font-weight-medium);
   --label-lg-line-height: var(--line-height-text-lg);
@@ -400,6 +410,7 @@
   --label-lg-paragraph-indent: var(--paragraphindent-0);
   --label-lg-text-case: var(--textcase-none);
   --label-lg-text-decoration: var(--textdecoration-none);
+  /* Label-xl*/
   --label-xl-font-family: var(--font-family-font-family-body);
   --label-xl-font-weight: var(--font-weight-medium);
   --label-xl-line-height: var(--line-height-text-xl);
@@ -409,6 +420,7 @@
   --label-xl-paragraph-indent: var(--paragraphindent-0);
   --label-xl-text-case: var(--textcase-none);
   --label-xl-text-decoration: var(--textdecoration-none);
+  /* Display-xs*/
   --display-xs-font-family: var(--font-family-font-family-body);
   --display-xs-font-weight: var(--font-weight-semibold);
   --display-xs-line-height: var(--line-height-text-md);
@@ -418,6 +430,7 @@
   --display-xs-paragraph-indent: var(--paragraphindent-0);
   --display-xs-text-case: var(--textcase-none);
   --display-xs-text-decoration: var(--textdecoration-none);
+  /* Display-sm*/
   --display-sm-font-family: var(--font-family-font-family-body);
   --display-sm-font-weight: var(--font-weight-semibold);
   --display-sm-line-height: var(--line-height-text-lg);
@@ -427,6 +440,7 @@
   --display-sm-paragraph-indent: var(--paragraphindent-0);
   --display-sm-text-case: var(--textcase-none);
   --display-sm-text-decoration: var(--textdecoration-none);
+  /* Display-md*/
   --display-md-font-family: var(--font-family-font-family-body);
   --display-md-font-weight: var(--font-weight-semibold);
   --display-md-line-height: var(--line-height-text-xl);
@@ -436,6 +450,7 @@
   --display-md-paragraph-indent: var(--paragraphindent-0);
   --display-md-text-case: var(--textcase-none);
   --display-md-text-decoration: var(--textdecoration-none);
+  /* Display-lg*/
   --display-lg-font-family: var(--font-family-font-family-body);
   --display-lg-font-weight: var(--font-weight-semibold);
   --display-lg-line-height: var(--line-height-display-lg);
@@ -445,6 +460,7 @@
   --display-lg-paragraph-indent: var(--paragraphindent-0);
   --display-lg-text-case: var(--textcase-none);
   --display-lg-text-decoration: var(--textdecoration-none);
+  /* Display-xl*/
   --display-xl-font-family: var(--font-family-font-family-body);
   --display-xl-font-weight: var(--font-weight-semibold);
   --display-xl-line-height: var(--line-height-display-xl);
@@ -454,6 +470,7 @@
   --display-xl-paragraph-indent: var(--paragraphindent-0);
   --display-xl-text-case: var(--textcase-none);
   --display-xl-text-decoration: var(--textdecoration-none);
+  /* Display-2xl*/
   --display-2xl-font-family: var(--font-family-font-family-body);
   --display-2xl-font-weight: var(--font-weight-semibold);
   --display-2xl-line-height: var(--line-height-display-2xl);
@@ -511,6 +528,8 @@
   --textcase-none: none;
   --textdecoration-none: none;
   --paragraphindent-0: 0px;
+
+  /* Body-xs*/
   --body-xs-font-family: var(--font-family-font-family-body);
   --body-xs-font-weight: var(--font-weight-regular);
   --body-xs-line-height: var(--line-height-text-xs);
@@ -520,6 +539,7 @@
   --body-xs-paragraph-indent: var(--paragraphindent-0);
   --body-xs-text-case: var(--textcase-none);
   --body-xs-text-decoration: var(--textdecoration-none);
+  /* Body-sm*/
   --body-sm-font-family: var(--font-family-font-family-body);
   --body-sm-font-weight: var(--font-weight-regular);
   --body-sm-line-height: var(--line-height-text-sm);
@@ -529,6 +549,7 @@
   --body-sm-paragraph-indent: var(--paragraphindent-0);
   --body-sm-text-case: var(--textcase-none);
   --body-sm-text-decoration: var(--textdecoration-none);
+  /* Body-md*/
   --body-md-font-family: var(--font-family-font-family-body);
   --body-md-font-weight: var(--font-weight-regular);
   --body-md-line-height: var(--line-height-text-md);
@@ -538,6 +559,7 @@
   --body-md-paragraph-indent: var(--paragraphindent-0);
   --body-md-text-case: var(--textcase-none);
   --body-md-text-decoration: var(--textdecoration-none);
+  /* Body-lg*/
   --body-lg-font-family: var(--font-family-font-family-body);
   --body-lg-font-weight: var(--font-weight-regular);
   --body-lg-line-height: var(--line-height-text-lg);
@@ -547,6 +569,7 @@
   --body-lg-paragraph-indent: var(--paragraphindent-0);
   --body-lg-text-case: var(--textcase-none);
   --body-lg-text-decoration: var(--textdecoration-none);
+  /* Body-xl*/
   --body-xl-font-family: var(--font-family-font-family-body);
   --body-xl-font-weight: var(--font-weight-regular);
   --body-xl-line-height: var(--line-height-text-xl);
@@ -556,6 +579,7 @@
   --body-xl-paragraph-indent: var(--paragraphindent-0);
   --body-xl-text-case: var(--textcase-none);
   --body-xl-text-decoration: var(--textdecoration-none);
+  /* Label-xs*/
   --label-xs-font-family: var(--font-family-font-family-body);
   --label-xs-font-weight: var(--font-weight-medium);
   --label-xs-line-height: var(--line-height-text-xs);
@@ -565,6 +589,7 @@
   --label-xs-text-case: var(--textcase-none);
   --label-xs-text-decoration: var(--textdecoration-none);
   --label-xs-font-size: var(--font-size-text-xs);
+  /* Label-sm*/
   --label-sm-font-family: var(--font-family-font-family-body);
   --label-sm-font-weight: var(--font-weight-medium);
   --label-sm-line-height: var(--line-height-text-sm);
@@ -574,6 +599,7 @@
   --label-sm-text-case: var(--textcase-none);
   --label-sm-text-decoration: var(--textdecoration-none);
   --label-sm-font-size: var(--font-size-text-sm);
+  /* Label-md*/
   --label-md-font-family: var(--font-family-font-family-body);
   --label-md-font-weight: var(--font-weight-medium);
   --label-md-line-height: var(--line-height-text-md);
@@ -583,6 +609,7 @@
   --label-md-paragraph-indent: var(--paragraphindent-0);
   --label-md-text-case: var(--textcase-none);
   --label-md-text-decoration: var(--textdecoration-none);
+  /* Label-lg*/
   --label-lg-font-family: var(--font-family-font-family-body);
   --label-lg-font-weight: var(--font-weight-medium);
   --label-lg-line-height: var(--line-height-text-lg);
@@ -592,6 +619,7 @@
   --label-lg-paragraph-indent: var(--paragraphindent-0);
   --label-lg-text-case: var(--textcase-none);
   --label-lg-text-decoration: var(--textdecoration-none);
+  /* Label-xl*/
   --label-xl-font-family: var(--font-family-font-family-body);
   --label-xl-font-weight: var(--font-weight-medium);
   --label-xl-line-height: var(--line-height-text-xl);
@@ -601,6 +629,7 @@
   --label-xl-paragraph-indent: var(--paragraphindent-0);
   --label-xl-text-case: var(--textcase-none);
   --label-xl-text-decoration: var(--textdecoration-none);
+  /* Display-xs*/
   --display-xs-font-family: var(--font-family-font-family-body);
   --display-xs-font-weight: var(--font-weight-semibold);
   --display-xs-line-height: var(--line-height-text-md);
@@ -610,6 +639,7 @@
   --display-xs-paragraph-indent: var(--paragraphindent-0);
   --display-xs-text-case: var(--textcase-none);
   --display-xs-text-decoration: var(--textdecoration-none);
+  /* Display-sm*/
   --display-sm-font-family: var(--font-family-font-family-body);
   --display-sm-font-weight: var(--font-weight-semibold);
   --display-sm-line-height: var(--line-height-text-lg);
@@ -619,6 +649,7 @@
   --display-sm-paragraph-indent: var(--paragraphindent-0);
   --display-sm-text-case: var(--textcase-none);
   --display-sm-text-decoration: var(--textdecoration-none);
+  /* Display-md*/
   --display-md-font-family: var(--font-family-font-family-body);
   --display-md-font-weight: var(--font-weight-semibold);
   --display-md-line-height: var(--line-height-text-xl);
@@ -628,6 +659,7 @@
   --display-md-paragraph-indent: var(--paragraphindent-0);
   --display-md-text-case: var(--textcase-none);
   --display-md-text-decoration: var(--textdecoration-none);
+  /* Display-lg*/
   --display-lg-font-family: var(--font-family-font-family-body);
   --display-lg-font-weight: var(--font-weight-semibold);
   --display-lg-line-height: var(--line-height-display-lg);
@@ -637,6 +669,7 @@
   --display-lg-paragraph-indent: var(--paragraphindent-0);
   --display-lg-text-case: var(--textcase-none);
   --display-lg-text-decoration: var(--textdecoration-none);
+  /* Display-xl*/
   --display-xl-font-family: var(--font-family-font-family-body);
   --display-xl-font-weight: var(--font-weight-semibold);
   --display-xl-line-height: var(--line-height-display-xl);
@@ -646,6 +679,7 @@
   --display-xl-paragraph-indent: var(--paragraphindent-0);
   --display-xl-text-case: var(--textcase-none);
   --display-xl-text-decoration: var(--textdecoration-none);
+  /* Display-2xl*/
   --display-2xl-font-family: var(--font-family-font-family-body);
   --display-2xl-font-weight: var(--font-weight-semibold);
   --display-2xl-line-height: var(--line-height-display-2xl);
