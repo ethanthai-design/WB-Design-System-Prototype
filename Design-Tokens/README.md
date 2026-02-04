@@ -1,36 +1,47 @@
 # WB Design Tokens
 
-This package contains the raw design tokens and the scripts to convert them into usable CSS variables for the WB Design System.
+This package contains the raw design tokens and the automated pipeline to convert them into production-ready CSS variables.
 
 ## 🏗 Structure
 
-- `originial-tokens/`: (Hidden/Internal) Contains the raw JSON token files exported from design tools (like Figma).
-- `1. Color modes/`: Theme-specific color overrides (Light/Dark).
-- `2. Typography/`: Desktop and Mobile typography scales.
-- `3. Radius/`: Border radius tokens.
-- `4. Spacing/`: Layout and component spacing tokens.
-- `5. Widths/`: Max-width and container width tokens.
-- `_Primitives/`: Core color palettes and foundational values.
-- `convert_tokens.py`: A Python script that parses the JSON files and generates a `design_tokens.css` file in the `Development-Source` directory.
+- `_Primitives/`: Core foundational values (palettes, base spacing).
+- `1. Color modes/`: Theme-level overrides (Light/Dark).
+- `2. Typography/`: Multi-breakpoint typography scales.
+- `3. Radius/`, `4. Spacing/`, `5. Widths/`: Atomic dimension tokens.
+- `convert_tokens.py`: The "brain" of the conversion pipeline.
 
-## 🔄 How to Update Tokens
+## 🔄 Conversion Script Logic
 
-1.  **Modify JSON**: Edit or add tokens in the respective JSON files within the subdirectories.
-2.  **Run Conversion**: Run the Python script to update the CSS variables in the project:
+The `convert_tokens.py` script does more than just flatting JSON; it applies several critical transformation rules to ensure the CSS output is clean and developer-friendly:
+
+### 1. Intelligent De-duplication
+The script detects and merges redundant path segments. 
+- **Example**: `Font family` > `font-family-display` becomes `--font-family-display` instead of `--font-family-font-family-display`.
+
+### 2. Standardization & Synonyms
+Common shorthands are normalized to their full versions to maintain a premium API.
+- **Example**: `bg` -> `background`, `fg` -> `foreground`.
+
+### 3. Unit Injection
+Numeric values in dimension-related categories are automatically padded with units.
+- **Example**: `spacing-xs: 4` -> `--spacing-xs: 4px`.
+- **Categories**: spacing, radius, width, font-size, line-height.
+
+### 4. Font-Weight Numeric Mapping
+Design-friendly labels are mapped to CSS-standard numeric weights.
+- **Example**: `Regular` -> `400`, `Medium` -> `500`, `Bold` -> `700`.
+
+## � How to Update
+
+1.  **Modify JSON**: Edit tokens in the respective JSON files.
+2.  **Run Conversion**: 
     ```bash
     python3 convert_tokens.py
     ```
-3.  **Verify**: Check `../Development-Source/design_tokens.css` to see the changes.
+3.  **Verify**: Changes are automatically written to `Development-Source/projects/Library-Core/src/lib/styles/design_tokens.css`.
 
-## 🎨 Theme Support
+## 💻 Usage
 
-The generated CSS supports multi-theming via data attributes:
-- **Default (Light)**: Applied globally or via `[data-theme="light"]`.
-- **Dark Mode**: Activated via `[data-theme="dark"]`.
-- **Typography Sizing**: Supports `[data-typography="md"]` (default) and `[data-typography="lg"]`.
-
-## 💻 Usage in CSS
-
-Tokens are converted to kebab-case CSS variables. For example:
-- JSON: `Colors.Brand.500` -> CSS: `--colors-brand-500`
-- Usage: `color: var(--colors-brand-500);`
+Tokens are converted to kebab-case. 
+- **JSON**: `Colors.Brand.500` -> **CSS**: `--colors-brand-500`
+- **Resolution**: Internal references (e.g., `{Colors.Gray.900}`) are resolved and de-duplicated during conversion.
