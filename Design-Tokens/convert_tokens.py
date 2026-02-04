@@ -4,7 +4,6 @@ import re
 import sys
 
 TOKEN_DIR = os.path.dirname(os.path.abspath(__file__))
-# The folders are directly inside the TOKEN_DIR
 SOURCE_DIR = TOKEN_DIR
 OUTPUT_FILE = os.path.join(TOKEN_DIR, '..', 'Development-Source', 'projects', 'Library-Core', 'src', 'lib', 'styles', 'design_tokens.css')
 
@@ -21,44 +20,74 @@ def sanitize_name(key):
     temp = temp.strip('-')
     return temp.lower()
 
+def merge_paths(prefix, key):
+    if not prefix:
+        return key
+    
+    prefix_parts = prefix.split('-')
+    key_parts = key.split('-')
+    
+    # Handle synonyms and direct matches at the boundary
+    synonyms = {
+        'bg': 'background',
+        'background': 'bg',
+        'fg': 'foreground',
+        'foreground': 'fg',
+        'colors': 'color',
+        'color': 'colors',
+        'shadow': 'shadows',
+        'shadows': 'shadow',
+        'focus-ring': 'focus-rings',
+        'focus-rings': 'focus-ring'
+    }
+    
+    # Try to find the longest overlap
+    for i in range(min(len(prefix_parts), len(key_parts)), 0, -1):
+        overlap_p = prefix_parts[-i:]
+        overlap_k = key_parts[:i]
+        
+        # Check if they match exactly or are synonyms part-by-part
+        match = True
+        for p, k in zip(overlap_p, overlap_k):
+            if p != k and synonyms.get(p) != k:
+                match = False
+                break
+        
+        if match:
+            # Merge and normalize to preferred terms
+            merged = prefix_parts[:-i] + key_parts
+            normalized = []
+            for part in merged:
+                if part == 'bg': normalized.append('background')
+                elif part == 'fg': normalized.append('foreground')
+                else: normalized.append(part)
+            return '-'.join(normalized)
+            
+    # Normalize even if no merge happened
+    merged = prefix_parts + key_parts
+    normalized = []
+    for part in merged:
+        if part == 'bg': normalized.append('background')
+        elif part == 'fg': normalized.append('foreground')
+        else: normalized.append(part)
+    return '-'.join(normalized)
+
 def resolve_value(value):
     if not isinstance(value, str):
         return value
     
-    # Regex to find {Reference}
     def replacer(match):
         ref_name = match.group(1)
-        # Apply the same de-duplication logic during resolution
-        parts = []
-        for p in ref_name.split('.'):
+        # Apply the same merge_paths logic during resolution
+        parts = ref_name.split('.')
+        current_path = ""
+        for p in parts:
             sanitized = sanitize_name(p)
-            if not parts:
-                parts.append(sanitized)
-            else:
-                last = parts[-1]
-                # Check for redundancy or synonyms
-                if sanitized == last:
-                    continue
-                if (last == 'background' and sanitized == 'bg') or (last == 'bg' and sanitized == 'background'):
-                    continue
-                if (last == 'foreground' and sanitized == 'fg') or (last == 'fg' and sanitized == 'foreground'):
-                    continue
-                if (last == 'color' and sanitized == 'colors') or (last == 'colors' and sanitized == 'color'):
-                    continue
-                # Handle cases where sanitized starts with last- (e.g., text and text-primary)
-                if sanitized.startswith(last + '-'):
-                    parts[-1] = sanitized # Replace with more specific version
-                else:
-                    parts.append(sanitized)
+            current_path = merge_paths(current_path, sanitized)
         
-        var_name = '-'.join(parts)
-        # Final pass for common redundancies
-        var_name = var_name.replace('text-text-', 'text-')
-        var_name = var_name.replace('border-border-', 'border-')
-        var_name = var_name.replace('background-bg-', 'background-')
-        var_name = var_name.replace('foreground-fg-', 'foreground-')
-        
-        return f"var(--{var_name})"
+        # Global cleanup for specific leftovers
+        current_path = re.sub(r'-+', '-', current_path).strip('-')
+        return f"var(--{current_path})"
     
     return re.sub(r'\{([^}]+)\}', replacer, value)
 
@@ -71,45 +100,48 @@ def flatten_tokens(obj, prefix='', tokens=None):
             continue
             
         sanitized_key = sanitize_name(key)
+        new_prefix = merge_paths(prefix, sanitized_key)
         
-        if not prefix:
-            new_prefix = sanitized_key
-        else:
-            prefix_parts = prefix.split('-')
-            last_part = prefix_parts[-1]
-            
-            # Check for redundancy or synonyms
-            is_redundant = False
-            if sanitized_key == last_part:
-                is_redundant = True
-            elif (last_part == 'background' and sanitized_key == 'bg') or (last_part == 'bg' and sanitized_key == 'background'):
-                is_redundant = True
-            elif (last_part == 'foreground' and sanitized_key == 'fg') or (last_part == 'fg' and sanitized_key == 'foreground'):
-                is_redundant = True
-            elif (last_part == 'color' and sanitized_key == 'colors') or (last_part == 'colors' and sanitized_key == 'color'):
-                is_redundant = True
-            
-            if is_redundant:
-                new_prefix = prefix # Don't add anything
-            elif sanitized_key.startswith(last_part + '-'):
-                # Key already contains the prefix part (e.g., prefix='text', key='text-primary')
-                new_prefix = prefix[:-len(last_part)] + sanitized_key
-            else:
-                new_prefix = f"{prefix}-{sanitized_key}"
-            
-        # Global cleanup for common start repetitions (e.g., color-colors)
-        new_prefix = re.sub(r'^(color|colors)-(color|colors)-', r'\1-', new_prefix)
-        # Fix specific cases mentioned by user
-        new_prefix = new_prefix.replace('text-text-', 'text-')
-        new_prefix = new_prefix.replace('border-border-', 'border-')
-        new_prefix = new_prefix.replace('background-bg-', 'background-')
-        new_prefix = new_prefix.replace('foreground-fg-', 'foreground-')
+        # Global cleanup for repetitive prefixes (e.g., color-colors)
+        new_prefix = re.sub(r'^(color|colors)-(color|colors)-', r'color-', new_prefix)
+        # Clean up double mentions if they escaped merge_paths
+        new_prefix = re.sub(r'-+', '-', new_prefix).strip('-')
 
         if isinstance(value, dict) and '$value' in value:
+            # Skip composite tokens
             if value.get('$type') in ['typography']:
                 continue
-            else:
-                tokens[new_prefix] = resolve_value(value['$value'])
+            
+            val = resolve_value(value['$value'])
+            
+            # Systematically append px to numeric values for dimensions
+            if isinstance(val, (int, float)):
+                types_needing_px = ['number', 'fontSizes', 'lineHeights', 'letterSpacing', 'paragraphSpacing', 'paragraphIndent', 'dimension', 'borderRadius']
+                # Check $type or key context
+                if value.get('$type') in types_needing_px:
+                    val = f"{val}px"
+                elif any(x in new_prefix for x in ['spacing', 'radius', 'width', 'size', 'height', 'indent']):
+                    # Ensure we don't add px to font-weight or other non-dimensions
+                    if 'weight' not in new_prefix and 'case' not in new_prefix and 'decoration' not in new_prefix:
+                        val = f"{val}px"
+            
+            # Font-weight mapping
+            if value.get('$type') == 'fontWeights' or 'font-weight' in new_prefix:
+                weight_map = {
+                    'regular': '400',
+                    'medium': '500',
+                    'semibold': '600',
+                    'bold': '700'
+                }
+                if isinstance(val, str):
+                    lower_val = val.lower()
+                    # Check for keywords and map to numeric values
+                    for name, weight in weight_map.items():
+                        if name in lower_val:
+                            val = weight
+                            break
+            
+            tokens[new_prefix] = val
         elif isinstance(value, dict):
             flatten_tokens(value, new_prefix, tokens)
             
@@ -129,20 +161,20 @@ def process_file(file_path):
 
 # Define CSS Groups
 css_groups = {
-    ':root': [], # Primitives, Spacing (Default), Global resets
-    '[data-theme="light"], :root': [], # Light mode (default)
-    '[data-theme="dark"]': [],         # Dark mode
-    ':root, [data-typography="md"]': [], # Typography MD (default)
-    '[data-typography="lg"]': []       # Typography LG
+    ':root': [],
+    '[data-theme="light"], :root': [],
+    '[data-theme="dark"]': [],
+    ':root, [data-typography="md"]': [],
+    '[data-typography="lg"]': []
 }
 
-# 1. Primitives (Global)
+# 1. Primitives
 primitives_file = os.path.join(SOURCE_DIR, '_Primitives', 'Core Value.json')
 tokens = process_file(primitives_file)
 for key, val in tokens.items():
     css_groups[':root'].append(f"  --{key}: {val};")
 
-# 2. Semantic Colors - Light Mode (Default)
+# 2. Semantic Colors - Light Mode
 light_mode_file = os.path.join(SOURCE_DIR, '1. Color modes', 'Light Mode.json')
 tokens = process_file(light_mode_file)
 for key, val in tokens.items():
@@ -154,16 +186,13 @@ tokens = process_file(dark_mode_file)
 for key, val in tokens.items():
     css_groups['[data-theme="dark"]'].append(f"  --{key}: {val};")
 
-# 4. Spacing (Global)
+# 4. Spacing
 spacing_file = os.path.join(SOURCE_DIR, '4. Spacing', 'Spacing Default.json')
 tokens = process_file(spacing_file)
 for key, val in tokens.items():
-    clean_val = val
-    if isinstance(val, (int, float)):
-        clean_val = f"{val}px"
-    css_groups[':root'].append(f"  --{key}: {clean_val};")
+    css_groups[':root'].append(f"  --{key}: {val};")
 
-# 5. Radius & Widths (Global)
+# 5. Radius & Widths
 for folder in ['3. Radius', '5. Widths']:
     full_path = os.path.join(SOURCE_DIR, folder)
     if os.path.exists(full_path):
@@ -171,32 +200,20 @@ for folder in ['3. Radius', '5. Widths']:
             if file.endswith('.json'):
                 tokens = process_file(os.path.join(full_path, file))
                 for key, val in tokens.items():
-                    clean_val = val
-                    if isinstance(val, (int, float)):
-                        clean_val = f"{val}px"
-                    css_groups[':root'].append(f"  --{key}: {clean_val};")
+                    css_groups[':root'].append(f"  --{key}: {val};")
 
 # 6. Typography
-# MD Mode (Default)
+# MD Mode
 typo_md_file = os.path.join(SOURCE_DIR, '2. Typography', 'Breakpoint md.json')
 tokens = process_file(typo_md_file)
 for key, val in tokens.items():
-    clean_val = val
-    if isinstance(val, (int, float)):
-        # Apply px to dimensions but not weights
-        if any(x in key for x in ['size', 'height', 'spacing', 'indent']) and 'weight' not in key:
-            clean_val = f"{val}px"
-    css_groups[':root, [data-typography="md"]'].append(f"  --{key}: {clean_val};")
+    css_groups[':root, [data-typography="md"]'].append(f"  --{key}: {val};")
 
 # LG Mode
 typo_lg_file = os.path.join(SOURCE_DIR, '2. Typography', 'Breakpoint lg.json')
 tokens = process_file(typo_lg_file)
 for key, val in tokens.items():
-    clean_val = val
-    if isinstance(val, (int, float)):
-        if any(x in key for x in ['size', 'height', 'spacing', 'indent']) and 'weight' not in key:
-            clean_val = f"{val}px"
-    css_groups['[data-typography="lg"]'].append(f"  --{key}: {clean_val};")
+    css_groups['[data-typography="lg"]'].append(f"  --{key}: {val};")
 
 # Output CSS
 os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
